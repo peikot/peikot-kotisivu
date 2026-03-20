@@ -16,7 +16,8 @@ jobs:
       - name: Hae jäsenmäärä Apps Scriptistä
         id: fetch
         run: |
-          MAARA=$(curl -sL "https://script.google.com/macros/s/AKfycbxe5zT0oY_1dgBaQ8CPJgdIB0oJ7sqiXNlC4tZwMvCW9GUK5bniqYM-hsTlI0c_pLhf/exec" | jq -r '.jasenmaara')
+          URL=$(jq -r '.appsScriptUrl' config.json)
+          MAARA=$(curl -sL "$URL" | jq -r '.jasenmaara')
           if [[ "$MAARA" =~ ^[0-9]+$ ]]; then
             echo "maara=$MAARA" >> $GITHUB_OUTPUT
           else
@@ -27,7 +28,9 @@ jobs:
         run: |
           MAARA=${{ steps.fetch.outputs.maara }}
           sed -i "s/data-maara=\"[0-9]*\"/data-maara=\"$MAARA\"/g" index.html
-          echo "{ \"jasenmaara\": $MAARA }" > config.json
+          # Päivitä vain jasenmaara-kenttä, säilytä muu fallback-data
+          tmp=$(mktemp)
+          jq --argjson m "$MAARA" '.jasenmaara = $m' config.json > "$tmp" && mv "$tmp" config.json
 
       - name: Commitoi muutokset jos tarpeen
         run: |

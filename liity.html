@@ -18,14 +18,14 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" href="fonts/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="canonical" href="https://vuoreksenpeikot.fi/liity.html">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1">
 </head>
 <body>
 
-  <div id="nav-placeholder"></div>
+  <div id="nav-placeholder"><noscript><nav class="nav" role="navigation" aria-label="Päänavigaatio"><div class="container nav-inner"><a href="index.html" class="nav-logo" aria-label="Vuoreksen Peikot etusivu"><img src="img/logo-white.webp" alt="Vuoreksen Peikot logo"></a><ul class="nav-links" style="display:flex"><li><a href="index.html">Etusivu</a></li><li><a href="kalenteri.html">Kalenteri</a></li><li><a href="liity.html">Liity</a></li><li><a href="yhteistyo.html">Yhteistyö</a></li><li><a href="ota-yhteytta.html">Ota yhteyttä</a></li></ul></div></nav></noscript></div>
 
   <!-- PAGE HERO -->
-  <section class="page-hero">
+  <section class="page-hero" id="main-content">
     <div class="page-hero-bg" aria-hidden="true"></div>
     <div class="container page-hero-content">
       <h1>Liity jäseneksi</h1>
@@ -262,11 +262,8 @@
 
   <script data-goatcounter="https://peikot.goatcounter.com/count"
           async src="js/count.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=1"></script>
   <script>
-    // Vaihda tähän Apps Script web-appin URL julkaisun jälkeen
-    var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxe5zT0oY_1dgBaQ8CPJgdIB0oJ7sqiXNlC4tZwMvCW9GUK5bniqYM-hsTlI0c_pLhf/exec';
-
     document.getElementById('liittymislomake').addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -276,7 +273,8 @@
 
       var formData = new FormData(this);
 
-      fetch(APPS_SCRIPT_URL, {
+      fetch('config.json').then(function (r) { return r.json(); }).then(function (config) {
+      fetch(config.appsScriptUrl, {
         method: 'POST',
         mode: 'no-cors',
         body: new URLSearchParams(formData)
@@ -296,6 +294,7 @@
           btn.textContent = 'Lähetä hakemus →';
           alert('Lomakkeen lähetyksessä tapahtui virhe. Yritä uudelleen tai ota yhteyttä osoitteeseen info@vuoreksenpeikot.fi');
         });
+      });
     });
   </script>
 </body>

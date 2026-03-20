@@ -18,7 +18,7 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" href="fonts/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="canonical" href="https://vuoreksenpeikot.fi/">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -43,10 +43,10 @@
 </head>
 <body>
 
-  <div id="nav-placeholder"></div>
+  <div id="nav-placeholder"><noscript><nav class="nav" role="navigation" aria-label="Päänavigaatio"><div class="container nav-inner"><a href="index.html" class="nav-logo" aria-label="Vuoreksen Peikot etusivu"><img src="img/logo-white.webp" alt="Vuoreksen Peikot logo"></a><ul class="nav-links" style="display:flex"><li><a href="index.html">Etusivu</a></li><li><a href="kalenteri.html">Kalenteri</a></li><li><a href="liity.html">Liity</a></li><li><a href="yhteistyo.html">Yhteistyö</a></li><li><a href="ota-yhteytta.html">Ota yhteyttä</a></li></ul></div></nav></noscript></div>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="main-content">
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="container hero-content">
       <span class="hero-badge fade-up">Vuores · Tampere · Lempäälä</span>
@@ -75,12 +75,12 @@
           <p>Futista Vuoreksen Tervaslammenpuistossa! Kaikille avointa höntsyfutista.</p>
         </div>
         <div class="card card--img card--futsal fade-up delay-1">
-          <span class="card-icon">🏃</span>
+          <span class="card-icon"><img src="img/futsal-icon.webp" alt="Futsal"></span>
           <h3>Höntsyfutsal</h3>
           <p>Futsalia kun ei päästä futista! Vain jäsenille erillisellä osallistumismaksulla.</p>
         </div>
         <div class="card card--img card--sahly fade-up delay-2">
-          <span class="card-icon">🏑</span>
+          <span class="card-icon"><img src="img/sahly-icon.webp" alt="Sähly"></span>
           <h3>Höntsysähly</h3>
           <p>Talvikauden sählyä, Vuoreksen tai Peltolammin koulussa. Moket ilmaseks!</p>
         </div>
@@ -98,7 +98,7 @@
           <h3>Harraste- ja kilpatoiminta</h3>
           <p>Peikoista osallistutaan myös kilpatoimintaan, kuten Puistofutikseen ja Spiral-liigaan.</p>
         </div>
-        <div class="card card--hontsy fade-up delay-3" onclick="document.getElementById('hontsy-modal').classList.add('is-open')" role="button" tabindex="0">
+        <div class="card card--hontsy fade-up delay-3" id="hontsy-btn" role="button" tabindex="0">
           <span class="card-hontsy-badge">
             <span class="card-hontsy-badge-text">Tutustu Peikkojen höntsysääntöihin!</span>
             <svg class="card-hontsy-badge-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -107,6 +107,52 @@
           <h3>Paikallinen höntsymeininki</h3>
           <p>Urheilu yhdistää Peikkoja! Ja mikäs parempaa kuin urheilla hyvässä hengessä.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEURAAVA PELI + HÖNTSYMITTARI -->
+  <section class="section section-alt" id="seuraava-peli">
+    <div class="container">
+      <div class="next-game" id="next-game">
+        <div class="next-game-icon" id="next-game-icon"></div>
+        <div class="next-game-info">
+          <span class="next-game-label">Seuraavat höntsyt</span>
+          <h3 id="next-game-title">Ladataan...</h3>
+          <p class="next-game-details" id="next-game-details"></p>
+        </div>
+        <div class="next-game-countdown" id="next-game-countdown">
+          <div class="countdown-unit">
+            <span class="countdown-number" id="cd-days">-</span>
+            <span class="countdown-label">pv</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-number" id="cd-hours">-</span>
+            <span class="countdown-label">t</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-number" id="cd-mins">-</span>
+            <span class="countdown-label">min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hontsymittari" id="hontsymittari">
+        <h3 class="hontsymittari-title" id="hontsymittari-title">Höntsymittari</h3>
+        <div class="mittari-stats">
+          <div class="mittari-stat">
+            <span class="mittari-number" id="mittari-pelit" data-maara="0">0</span>
+            <span class="mittari-label">peliä pelattu</span>
+          </div>
+          <div class="mittari-stat">
+            <span class="mittari-number" id="mittari-tunnit" data-maara="0">0</span>
+            <span class="mittari-label">tuntia liikuttu</span>
+          </div>
+        </div>
+        <div class="mittari-bar">
+          <div class="mittari-bar-fill" id="mittari-fill"></div>
+        </div>
+        <p class="mittari-target" id="mittari-target"></p>
       </div>
     </div>
   </section>
@@ -152,6 +198,6 @@
 
   <script data-goatcounter="https://peikot.goatcounter.com/count"
           async src="js/count.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=1"></script>
 </body>
 </html>

@@ -2,22 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://vuoreksenpeikot.fi/</loc>
+    <lastmod>2026-03-20</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://vuoreksenpeikot.fi/kalenteri.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://vuoreksenpeikot.fi/liity.html</loc>
+    <lastmod>2026-03-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://vuoreksenpeikot.fi/ota-yhteytta.html</loc>
+    <lastmod>2026-03-20</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://vuoreksenpeikot.fi/yhteistyo.html</loc>
+    <lastmod>2026-03-20</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://vuoreksenpeikot.fi/tietosuoja.html</loc>
+    <lastmod>2026-03-20</lastmod>
     <priority>0.3</priority>
   </url>
 </urlset>

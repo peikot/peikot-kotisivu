@@ -18,6 +18,7 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" href="fonts/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="canonical" href="https://vuoreksenpeikot.fi/ilmoittaudu.html">
+  <link rel="preconnect" href="https://script.google.com" crossorigin>
   <link rel="stylesheet" href="css/style.css?v=1">
   <style>
     .ilmo-kategoriat { display: grid; gap: 16px; grid-template-columns: 1fr; margin: 24px 0; }
@@ -255,38 +256,40 @@
       document.getElementById('ilmo-lomake').style.display = 'block';
     }
 
-    // Lataa kategoriat — näytä fallback-data heti, päivitä API:sta
-    fetch('config.json')
+    // Lataa kategoriat — config.json ja API rinnakkain
+    var configPromise = fetch('config.json').then(function(r) { return r.json(); });
+
+    // Aloita API-haku HETI rinnakkain (URL tiedossa)
+    var apiPromise = fetch('https://script.google.com/macros/s/AKfycbyFtReOP5raDe9vXMRy0sQnbXiGIrlGiRlxDY0Kt_yVgHNRTplqWqo2gYWaGQ9fXRUXiw/exec?action=kategoriat')
       .then(function(r) { return r.json(); })
-      .then(function(config) {
-        // Näytä fallback-data välittömästi jos saatavilla
-        if (config.ilmoittautumisKategoriat && config.ilmoittautumisKategoriat.length > 0) {
-          ilmoKategoriat = config.ilmoittautumisKategoriat;
-          renderKategoriat(ilmoKategoriat);
-        }
+      .catch(function() { return null; });
 
-        if (!config.ilmoittautumisUrl) {
-          if (!config.ilmoittautumisKategoriat) {
-            document.getElementById('ilmo-kategoriat-lataus').textContent = 'Ilmoittautuminen ei ole käytössä.';
-          }
-          return;
-        }
-
-        // Hae tuoreet tiedot API:sta taustalla
-        return fetch(config.ilmoittautumisUrl + '?action=kategoriat');
-      })
-      .then(function(r) { if (r) return r.json(); })
-      .then(function(data) {
-        if (!data) return;
-        ilmoKategoriat = data.kategoriat || [];
+    configPromise.then(function(config) {
+      // Näytä fallback-data välittömästi jos saatavilla
+      if (config.ilmoittautumisKategoriat && config.ilmoittautumisKategoriat.length > 0) {
+        ilmoKategoriat = config.ilmoittautumisKategoriat;
         renderKategoriat(ilmoKategoriat);
-      })
-      .catch(function() {
-        // Jos fallback-data näkyi jo, ei näytetä virhettä
-        if (ilmoKategoriat.length === 0) {
+      }
+
+      // Odota API-vastausta ja päivitä tuoreella datalla
+      apiPromise.then(function(data) {
+        if (data && data.kategoriat) {
+          ilmoKategoriat = data.kategoriat;
+          renderKategoriat(ilmoKategoriat);
+        } else if (ilmoKategoriat.length === 0) {
           document.getElementById('ilmo-kategoriat-lataus').textContent = 'Lajien lataus ep\u00e4onnistui. Yrit\u00e4 p\u00e4ivitt\u00e4\u00e4 sivu.';
         }
       });
+    }).catch(function() {
+      apiPromise.then(function(data) {
+        if (data && data.kategoriat) {
+          ilmoKategoriat = data.kategoriat;
+          renderKategoriat(ilmoKategoriat);
+        } else {
+          document.getElementById('ilmo-kategoriat-lataus').textContent = 'Lajien lataus ep\u00e4onnistui. Yrit\u00e4 p\u00e4ivitt\u00e4\u00e4 sivu.';
+        }
+      });
+    });
 
     // Lomakkeen lähetys
     document.getElementById('ilmo-lomake').addEventListener('submit', function(e) {
@@ -305,18 +308,14 @@
       var nimi = document.getElementById('ilmo-nimi').value;
       var lisatiedot = document.getElementById('ilmo-lisatiedot').value;
 
-      fetch('config.json')
-        .then(function(r) { return r.json(); })
-        .then(function(config) {
-          return fetch(config.ilmoittautumisUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: new URLSearchParams({
-              nimi: nimi,
-              lisatiedot: lisatiedot,
-              kategoriat: kategoriaLista.join(',')
-            })
-          });
+      fetch('https://script.google.com/macros/s/AKfycbyFtReOP5raDe9vXMRy0sQnbXiGIrlGiRlxDY0Kt_yVgHNRTplqWqo2gYWaGQ9fXRUXiw/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          body: new URLSearchParams({
+            nimi: nimi,
+            lisatiedot: lisatiedot,
+            kategoriat: kategoriaLista.join(',')
+          })
         })
         .then(function() {
           // Päivitä kortit optimistisesti: kasvata ilmoittautuneiden määrää

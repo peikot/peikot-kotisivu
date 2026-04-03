@@ -62,10 +62,10 @@
       content: '\2713'; color: var(--white); font-size: 14px; font-weight: 700;
     }
 
-    .ilmo-palkki { height: 8px; border-radius: 4px; background: var(--gray-light); overflow: hidden; margin-top: 8px; }
+    .ilmo-palkki { height: 8px; border-radius: 4px; background: #a8dbb0; overflow: hidden; margin-top: 8px; }
     .ilmo-palkki-taytto {
-      height: 100%; border-radius: 4px;
-      transition: width .4s ease, background .4s ease;
+      height: 100%; border-radius: 4px; background: #c5221f;
+      transition: width .4s ease;
     }
 
     .ilmo-paikat { font-size: .82rem; color: var(--gray); margin-top: 6px; }
@@ -175,16 +175,7 @@
     var ilmoKategoriat = [];
     var valitut = {};
 
-    function palkkiVari(prosentti) {
-      // 0% = vihreä, 100% = punainen
-      if (prosentti <= 50) {
-        var r = Math.round(prosentti * 2 * 2.55);
-        return 'rgb(' + r + ', 180, 80)';
-      } else {
-        var g = Math.round((100 - prosentti) * 2 * 1.8);
-        return 'rgb(200, ' + g + ', 60)';
-      }
-    }
+    // Palkin värit: tausta vihreä (vapaat), täyttö punainen (varatut) — määritelty CSS:ssä
 
     function renderKategoriat(kategoriat) {
       var container = document.getElementById('ilmo-kategoriat');
@@ -220,7 +211,7 @@
           if (tayttoProsentti > 100) tayttoProsentti = 100;
 
           html += '<div class="ilmo-palkki">';
-          html += '<div class="ilmo-palkki-taytto" style="width:' + tayttoProsentti + '%; background:' + palkkiVari(tayttoProsentti) + '"></div>';
+          html += '<div class="ilmo-palkki-taytto" style="width:' + tayttoProsentti + '%"></div>';
           html += '</div>';
 
           if (onTaynna) {

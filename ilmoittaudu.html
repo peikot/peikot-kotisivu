@@ -45,9 +45,11 @@
       border-radius: 12px; letter-spacing: .03em;
     }
 
-    .ilmo-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-right: 32px; }
+    .ilmo-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; padding-right: 32px; }
     .ilmo-card-nimi { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: .04em; color: var(--green-dark); }
     .ilmo-card-hinta { font-size: .9rem; font-weight: 700; color: var(--text); }
+
+    .ilmo-card-info { font-size: .82rem; color: var(--gray); margin-bottom: 10px; line-height: 1.4; }
 
     .ilmo-card-check {
       position: absolute; top: 14px; right: 14px;
@@ -205,6 +207,13 @@
           ? '<span class="ilmo-badge-taynna">T\u00e4ynn\u00e4</span>'
           : '<span class="ilmo-card-hinta">' + hintaTeksti + '</span>';
         html += '</div>';
+
+        var infoParts = [];
+        if (kat.aika) infoParts.push(kat.aika);
+        if (kat.paikka) infoParts.push(kat.paikka);
+        if (infoParts.length > 0) {
+          html += '<div class="ilmo-card-info">' + infoParts.join(' &middot; ') + '</div>';
+        }
 
         if (kat.maksimi !== null) {
           var tayttoProsentti = Math.round((kat.ilmoittautuneita / kat.maksimi) * 100);

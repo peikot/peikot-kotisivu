@@ -34,8 +34,16 @@
     }
     .ilmo-card:hover { border-color: var(--green); box-shadow: var(--shadow); }
     .ilmo-card.selected { border-color: var(--green); background: var(--green-pale); }
-    .ilmo-card.taynna { opacity: 0.6; cursor: not-allowed; border-color: var(--gray-light); }
+    .ilmo-card.taynna { cursor: default; border-color: var(--gray-light); background: #fafafa; }
     .ilmo-card.taynna:hover { box-shadow: none; border-color: var(--gray-light); }
+    .ilmo-card.taynna .ilmo-card-nimi { color: var(--gray); }
+    .ilmo-card.taynna .ilmo-card-check { display: none; }
+
+    .ilmo-badge-taynna {
+      display: inline-block; background: #c5221f; color: var(--white);
+      font-size: .75rem; font-weight: 700; padding: 2px 10px;
+      border-radius: 12px; letter-spacing: .03em;
+    }
 
     .ilmo-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .ilmo-card-nimi { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: .04em; color: var(--green-dark); }
@@ -202,7 +210,9 @@
         var html = '<div class="ilmo-card-check"></div>';
         html += '<div class="ilmo-card-header">';
         html += '<span class="ilmo-card-nimi">' + kat.nimi + '</span>';
-        html += '<span class="ilmo-card-hinta">' + hintaTeksti + '</span>';
+        html += onTaynna
+          ? '<span class="ilmo-badge-taynna">T\u00e4ynn\u00e4</span>'
+          : '<span class="ilmo-card-hinta">' + hintaTeksti + '</span>';
         html += '</div>';
 
         if (kat.maksimi !== null) {

@@ -224,7 +224,7 @@
           if (onTaynna) {
             html += '<div class="ilmo-paikat ilmo-paikat-taynna">' + kat.ilmoittautuneita + ' / ' + kat.maksimi + ' \u2014 T\u00e4ynn\u00e4</div>';
           } else {
-            html += '<div class="ilmo-paikat">' + kat.ilmoittautuneita + ' / ' + kat.maksimi + ' ilmoittautunut \u2014 ' + kat.vapaana + ' paikkaa vapaana</div>';
+            html += '<div class="ilmo-paikat">' + kat.ilmoittautuneita + ' / ' + kat.maksimi + ' ilmoittautunut \u2014 ' + kat.vapaana + (kat.vapaana === 1 ? ' paikka' : ' paikkaa') + ' vapaana</div>';
           }
         } else {
           html += '<div class="ilmo-paikat">' + kat.ilmoittautuneita + ' ilmoittautunut</div>';

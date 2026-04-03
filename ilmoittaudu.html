@@ -102,7 +102,7 @@
     <div class="container">
       <div class="form-section">
         <h2>Ilmoittautuminen</h2>
-        <p>Valitse lajit joihin haluat ilmoittautua ja täytä tietosi. Ilmoittautuminen on tarkoitettu seuran jäsenille.</p>
+        <p>Valitse mihin haluat osallistua ja täytä tietosi. Ilmoittautuminen on tarkoitettu seuran jäsenille.</p>
 
         <div class="ilmo-jasen-info">
           Ilmoittautuminen on vain jäsenille. Etkö ole vielä jäsen? <a href="liity.html">Liity jäseneksi &rarr;</a>
@@ -110,7 +110,7 @@
 
         <div id="ilmo-container">
           <!-- Kategoriat -->
-          <div id="ilmo-kategoriat-lataus" class="ilmo-lataus">Ladataan lajeja...</div>
+          <div id="ilmo-kategoriat-lataus" class="ilmo-lataus">Ladataan...</div>
           <div id="ilmo-kategoriat" class="ilmo-kategoriat" style="display:none"></div>
 
           <!-- Lomake -->
@@ -134,7 +134,7 @@
       <!-- Maksuohjeet -->
       <div class="payment-box" style="margin-top: 24px">
         <h3>Maksutiedot</h3>
-        <p>Osallistumismaksut voi maksaa MobilePay:llä tai tilisiirrolla. Käytä viestinä nimeäsi ja lajia.</p>
+        <p>Osallistumismaksut voi maksaa MobilePay:llä tai tilisiirrolla. Käytä viestinä nimeäsi ja mitä maksu koskee.</p>
 
         <div class="payment-columns">
           <div class="payment-col">
@@ -149,7 +149,7 @@
             </div>
             <div class="payment-item">
               <label>Viesti</label>
-              <span>Oma nimesi + laji</span>
+              <span>Oma nimesi + mitä maksu koskee</span>
             </div>
           </div>
 
@@ -178,7 +178,8 @@
 
     // Palkin värit: tausta vihreä (vapaat), täyttö punainen (varatut) — määritelty CSS:ssä
 
-    function renderKategoriat(kategoriat) {
+    function renderKategoriat(kategoriat, naytaLuvut) {
+      if (naytaLuvut === undefined) naytaLuvut = true;
       var container = document.getElementById('ilmo-kategoriat');
       container.innerHTML = '';
 
@@ -191,7 +192,7 @@
 
       for (var i = 0; i < kategoriat.length; i++) {
         var kat = kategoriat[i];
-        var onTaynna = kat.maksimi !== null && kat.vapaana <= 0;
+        var onTaynna = naytaLuvut && kat.maksimi !== null && kat.vapaana <= 0;
 
         var card = document.createElement('div');
         card.className = 'ilmo-card' + (onTaynna ? ' taynna' : '');
@@ -214,21 +215,25 @@
           html += '<div class="ilmo-card-info">' + infoParts.join(' &middot; ') + '</div>';
         }
 
-        if (kat.maksimi !== null) {
-          var tayttoProsentti = Math.round((kat.ilmoittautuneita / kat.maksimi) * 100);
-          if (tayttoProsentti > 100) tayttoProsentti = 100;
+        if (naytaLuvut) {
+          if (kat.maksimi !== null) {
+            var tayttoProsentti = Math.round((kat.ilmoittautuneita / kat.maksimi) * 100);
+            if (tayttoProsentti > 100) tayttoProsentti = 100;
 
-          html += '<div class="ilmo-palkki">';
-          html += '<div class="ilmo-palkki-taytto" style="width:' + tayttoProsentti + '%"></div>';
-          html += '</div>';
+            html += '<div class="ilmo-palkki">';
+            html += '<div class="ilmo-palkki-taytto" style="width:' + tayttoProsentti + '%"></div>';
+            html += '</div>';
 
-          if (onTaynna) {
-            html += '<div class="ilmo-paikat ilmo-paikat-taynna">' + kat.ilmoittautuneita + ' / ' + kat.maksimi + ' \u2014 T\u00e4ynn\u00e4</div>';
+            if (onTaynna) {
+              html += '<div class="ilmo-paikat ilmo-paikat-taynna">' + kat.ilmoittautuneita + ' / ' + kat.maksimi + ' \u2014 T\u00e4ynn\u00e4</div>';
+            } else {
+              html += '<div class="ilmo-paikat">' + kat.ilmoittautuneita + ' / ' + kat.maksimi + ' ilmoittautunut \u2014 ' + kat.vapaana + (kat.vapaana === 1 ? ' paikka' : ' paikkaa') + ' vapaana</div>';
+            }
           } else {
-            html += '<div class="ilmo-paikat">' + kat.ilmoittautuneita + ' / ' + kat.maksimi + ' ilmoittautunut \u2014 ' + kat.vapaana + (kat.vapaana === 1 ? ' paikka' : ' paikkaa') + ' vapaana</div>';
+            html += '<div class="ilmo-paikat">' + kat.ilmoittautuneita + ' ilmoittautunut</div>';
           }
         } else {
-          html += '<div class="ilmo-paikat">' + kat.ilmoittautuneita + ' ilmoittautunut</div>';
+          html += '<div class="ilmo-paikat" style="color: var(--gray)">Ladataan paikkoja\u2026</div>';
         }
 
         card.innerHTML = html;
@@ -265,19 +270,22 @@
       .catch(function() { return null; });
 
     configPromise.then(function(config) {
-      // Näytä fallback-data välittömästi jos saatavilla
+      // Näytä kortit heti config-datalla, mutta ilman lukuja (ne voivat olla vanhentuneita)
       if (config.ilmoittautumisKategoriat && config.ilmoittautumisKategoriat.length > 0) {
         ilmoKategoriat = config.ilmoittautumisKategoriat;
-        renderKategoriat(ilmoKategoriat);
+        renderKategoriat(ilmoKategoriat, false);
       }
 
-      // Odota API-vastausta ja päivitä tuoreella datalla
+      // Odota API-vastausta ja päivitä tuoreella datalla (luvut mukana)
       apiPromise.then(function(data) {
         if (data && data.kategoriat) {
           ilmoKategoriat = data.kategoriat;
           renderKategoriat(ilmoKategoriat);
         } else if (ilmoKategoriat.length === 0) {
-          document.getElementById('ilmo-kategoriat-lataus').textContent = 'Lajien lataus ep\u00e4onnistui. Yrit\u00e4 p\u00e4ivitt\u00e4\u00e4 sivu.';
+          document.getElementById('ilmo-kategoriat-lataus').textContent = 'Lataus ep\u00e4onnistui. Yrit\u00e4 p\u00e4ivitt\u00e4\u00e4 sivu.';
+        } else {
+          // API epäonnistui, näytä config-luvut fallbackina
+          renderKategoriat(ilmoKategoriat);
         }
       });
     }).catch(function() {
@@ -286,7 +294,7 @@
           ilmoKategoriat = data.kategoriat;
           renderKategoriat(ilmoKategoriat);
         } else {
-          document.getElementById('ilmo-kategoriat-lataus').textContent = 'Lajien lataus ep\u00e4onnistui. Yrit\u00e4 p\u00e4ivitt\u00e4\u00e4 sivu.';
+          document.getElementById('ilmo-kategoriat-lataus').textContent = 'Lataus ep\u00e4onnistui. Yrit\u00e4 p\u00e4ivitt\u00e4\u00e4 sivu.';
         }
       });
     });
@@ -297,7 +305,7 @@
 
       var kategoriaLista = Object.keys(valitut);
       if (kategoriaLista.length === 0) {
-        alert('Valitse v\u00e4hint\u00e4\u00e4n yksi laji.');
+        alert('Valitse v\u00e4hint\u00e4\u00e4n yksi osallistuminen.');
         return;
       }
 

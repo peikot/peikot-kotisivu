@@ -255,14 +255,24 @@
       document.getElementById('ilmo-lomake').style.display = 'block';
     }
 
-    // Lataa kategoriat
+    // Lataa kategoriat — näytä fallback-data heti, päivitä API:sta
     fetch('config.json')
       .then(function(r) { return r.json(); })
       .then(function(config) {
+        // Näytä fallback-data välittömästi jos saatavilla
+        if (config.ilmoittautumisKategoriat && config.ilmoittautumisKategoriat.length > 0) {
+          ilmoKategoriat = config.ilmoittautumisKategoriat;
+          renderKategoriat(ilmoKategoriat);
+        }
+
         if (!config.ilmoittautumisUrl) {
-          document.getElementById('ilmo-kategoriat-lataus').textContent = 'Ilmoittautuminen ei ole käytössä.';
+          if (!config.ilmoittautumisKategoriat) {
+            document.getElementById('ilmo-kategoriat-lataus').textContent = 'Ilmoittautuminen ei ole käytössä.';
+          }
           return;
         }
+
+        // Hae tuoreet tiedot API:sta taustalla
         return fetch(config.ilmoittautumisUrl + '?action=kategoriat');
       })
       .then(function(r) { if (r) return r.json(); })
@@ -272,7 +282,10 @@
         renderKategoriat(ilmoKategoriat);
       })
       .catch(function() {
-        document.getElementById('ilmo-kategoriat-lataus').textContent = 'Lajien lataus ep\u00e4onnistui. Yrit\u00e4 p\u00e4ivitt\u00e4\u00e4 sivu.';
+        // Jos fallback-data näkyi jo, ei näytetä virhettä
+        if (ilmoKategoriat.length === 0) {
+          document.getElementById('ilmo-kategoriat-lataus').textContent = 'Lajien lataus ep\u00e4onnistui. Yrit\u00e4 p\u00e4ivitt\u00e4\u00e4 sivu.';
+        }
       });
 
     // Lomakkeen lähetys

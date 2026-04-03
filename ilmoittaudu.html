@@ -319,7 +319,22 @@
           });
         })
         .then(function() {
-          document.getElementById('ilmo-container').innerHTML =
+          // Päivitä kortit optimistisesti: kasvata ilmoittautuneiden määrää
+          for (var i = 0; i < ilmoKategoriat.length; i++) {
+            for (var j = 0; j < kategoriaLista.length; j++) {
+              if (ilmoKategoriat[i].nimi === kategoriaLista[j]) {
+                ilmoKategoriat[i].ilmoittautuneita++;
+                if (ilmoKategoriat[i].vapaana !== null) {
+                  ilmoKategoriat[i].vapaana = Math.max(0, ilmoKategoriat[i].vapaana - 1);
+                }
+              }
+            }
+          }
+          valitut = {};
+          renderKategoriat(ilmoKategoriat);
+
+          // Näytä onnistumisviesti lomakkeen tilalle
+          document.getElementById('ilmo-lomake').innerHTML =
             '<div class="info-box info-box--success">' +
             '<strong>Ilmoittautuminen l\u00e4hetetty!</strong><br>' +
             'Olet ilmoittautunut: ' + kategoriaLista.join(', ') + '. ' +

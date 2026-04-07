@@ -5,15 +5,15 @@
   "yhteydenottoUrl": "https://script.google.com/macros/s/AKfycbx_fWn4XDqOUID0j5BvHbJycRP-bn5nrtCTuVW__rrtwAWNbr3lDjN8rQrsXikDa8voAw/exec",
   "ilmoittautumisUrl": "https://script.google.com/macros/s/AKfycbyFtReOP5raDe9vXMRy0sQnbXiGIrlGiRlxDY0Kt_yVgHNRTplqWqo2gYWaGQ9fXRUXiw/exec",
   "seuraavaPeli": {
-    "otsikko": "Höntsyfutis",
-    "alkaa": "2026-04-06T16:00:00.000Z",
-    "paikka": "Tervaslammen puisto, Vuores, Tampere",
-    "laji": "futis",
-    "emoji": "⚽"
+    "otsikko": "Höntsysähly",
+    "alkaa": "2026-04-08T17:00:00.000Z",
+    "paikka": "Vuoreksen koulukeskus palloilusali, Tampere",
+    "laji": "sahly",
+    "emoji": "sahly"
   },
   "hontsymittari": {
-    "pelit": 50,
-    "tunnit": 68,
+    "pelit": 51,
+    "tunnit": 70,
     "tavoite": 100
   },
   "ilmoittautumisKategoriat": [

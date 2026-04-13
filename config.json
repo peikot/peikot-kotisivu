@@ -6,14 +6,14 @@
   "ilmoittautumisUrl": "https://script.google.com/macros/s/AKfycbyFtReOP5raDe9vXMRy0sQnbXiGIrlGiRlxDY0Kt_yVgHNRTplqWqo2gYWaGQ9fXRUXiw/exec",
   "seuraavaPeli": {
     "otsikko": "Höntsyfutis",
-    "alkaa": "2026-04-12T16:00:00.000Z",
+    "alkaa": "2026-04-13T16:00:00.000Z",
     "paikka": "Tervaslammen puisto, Vuores, Tampere",
     "laji": "futis",
     "emoji": "⚽"
   },
   "hontsymittari": {
-    "pelit": 53,
-    "tunnit": 73,
+    "pelit": 54,
+    "tunnit": 74,
     "tavoite": 100
   },
   "ilmoittautumisKategoriat": [

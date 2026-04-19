@@ -18,15 +18,6 @@
   },
   "ilmoittautumisKategoriat": [
     {
-      "nimi": "Saunailta",
-      "hinta": 17,
-      "maksimi": 30,
-      "ilmoittautuneita": 18,
-      "vapaana": 12,
-      "aika": "Pe klo 18:00–23:59, 17.4.2026",
-      "paikka": "Tervaslammenpuisto ja YTHS-sauna"
-    },
-    {
       "nimi": "Sähly",
       "hinta": 10,
       "maksimi": 30,

@@ -6,14 +6,14 @@
   "ilmoittautumisUrl": "https://script.google.com/macros/s/AKfycbyFtReOP5raDe9vXMRy0sQnbXiGIrlGiRlxDY0Kt_yVgHNRTplqWqo2gYWaGQ9fXRUXiw/exec",
   "seuraavaPeli": {
     "otsikko": "Höntsyfutis",
-    "alkaa": "2026-04-19T16:00:00.000Z",
+    "alkaa": "2026-04-20T16:00:00.000Z",
     "paikka": "Tervaslammen puisto, Vuores, Tampere",
     "laji": "futis",
     "emoji": "⚽"
   },
   "hontsymittari": {
-    "pelit": 58,
-    "tunnit": 85,
+    "pelit": 59,
+    "tunnit": 86,
     "tavoite": 100
   },
   "ilmoittautumisKategoriat": [
@@ -21,8 +21,8 @@
       "nimi": "Sähly",
       "hinta": 10,
       "maksimi": 30,
-      "ilmoittautuneita": 25,
-      "vapaana": 5,
+      "ilmoittautuneita": 24,
+      "vapaana": 6,
       "aika": "Ke klo 20:00–21:30, 1.4–29.4.2026",
       "paikka": "Vuoreksen koulu"
     },

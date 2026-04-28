@@ -16,24 +16,5 @@
     "tunnit": 94,
     "tavoite": 100
   },
-  "ilmoittautumisKategoriat": [
-    {
-      "nimi": "Sähly",
-      "hinta": 10,
-      "maksimi": 24,
-      "ilmoittautuneita": 24,
-      "vapaana": 0,
-      "aika": "Ke klo 20:00–21:30, 1.4–29.4.2026",
-      "paikka": "Vuoreksen koulu"
-    },
-    {
-      "nimi": "Puistofutis",
-      "hinta": 20,
-      "maksimi": 25,
-      "ilmoittautuneita": 25,
-      "vapaana": 0,
-      "aika": "7.5.–14.9.2026",
-      "paikka": "Tampere"
-    }
-  ]
+  "ilmoittautumisKategoriat": []
 }

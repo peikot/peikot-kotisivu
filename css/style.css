@@ -109,8 +109,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding: 8px 14px; border-radius: 6px; transition: all var(--transition); letter-spacing: .02em;
 }
 .nav-links a:hover, .nav-links a.active { color: var(--white); background: rgba(255,255,255,.15); }
-.nav-cta { background: var(--white) !important; color: var(--green) !important; font-weight: 700 !important; }
-.nav-cta:hover { background: rgba(255,255,255,.9) !important; }
 
 .nav-hamburger { display: flex; flex-direction: column; gap: 5px; padding: 8px; border-radius: 6px; transition: background var(--transition); }
 .nav-hamburger:hover { background: rgba(255,255,255,.15); }

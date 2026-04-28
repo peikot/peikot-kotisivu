@@ -20,6 +20,9 @@
   --green-pale:  #e8f5ee;
   --white:       #ffffff;
   --off-white:   #f6f8f6;
+  --cream:       #faf6ee;
+  --ink:         #1a1a1a;
+  --accent-warm: #e8a23a;
   --gray-light:  #e4e8e4;
   --gray:        #777;
   --dark:        #111;
@@ -138,28 +141,67 @@ body.nav-open .nav-mobile { display: block; }
 ===================================================== */
 .hero {
   background: var(--green); color: var(--white);
-  padding: 80px 0 110px; position: relative; overflow: hidden;
+  padding: 60px 0 90px; position: relative; overflow: hidden;
+  min-height: clamp(360px, 60vh, 560px);
+  display: flex; align-items: center; justify-content: center;
 }
+/* Doodle-aalto heron alareunaan (tylsän polygonin tilalla) */
 .hero::after {
-  content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 64px;
-  background: var(--white); clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 36px;
+  background: var(--white);
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 36' preserveAspectRatio='none'><path d='M0,36 L0,18 Q60,2 120,16 T240,16 T360,16 T480,16 T600,16 T720,16 T840,16 T960,16 T1080,16 T1200,18 L1200,36 Z' fill='black'/></svg>");
+          mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 36' preserveAspectRatio='none'><path d='M0,36 L0,18 Q60,2 120,16 T240,16 T360,16 T480,16 T600,16 T720,16 T840,16 T960,16 T1080,16 T1200,18 L1200,36 Z' fill='black'/></svg>");
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background-image: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(255,255,255,.03) 40px, rgba(255,255,255,.03) 80px);
+  background: url('../img/banner.JPG') center/cover no-repeat;
+  background: -webkit-image-set(url('../img/banner.webp') type('image/webp'), url('../img/banner.JPG') type('image/jpeg')) center/cover no-repeat;
+  background: image-set(url('../img/banner.webp') type('image/webp'), url('../img/banner.JPG') type('image/jpeg')) center/cover no-repeat;
+  filter: grayscale(.9) contrast(1.05) brightness(.75);
 }
-.hero-content { position: relative; z-index: 1; max-width: 680px; }
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg,
+    rgba(0,77,38,.78) 0%,
+    rgba(0,77,38,.55) 50%,
+    rgba(0,40,20,.7) 100%);
+}
+.hero-logo {
+  position: relative; z-index: 1;
+  width: clamp(220px, 40vw, 460px);
+  height: auto;
+  filter: drop-shadow(0 10px 36px rgba(0,0,0,.5));
+}
+@media (max-width: 600px) {
+  .hero-logo { width: clamp(180px, 60vw, 280px); }
+  .hero { min-height: 320px; padding: 40px 0 60px; }
+}
+.hero-content { position: relative; z-index: 1; max-width: 720px; }
 .hero-badge {
-  display: inline-block; background: rgba(255,255,255,.15); color: rgba(255,255,255,.9);
+  display: inline-block; background: var(--cream); color: var(--green-dark);
   font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-  padding: 5px 14px; border-radius: 20px; margin-bottom: 20px;
+  padding: 6px 16px; border-radius: 20px; margin-bottom: 24px;
+  transform: rotate(-2deg);
+  box-shadow: 0 3px 10px rgba(0,0,0,.18), 0 0 0 1px rgba(255,255,255,.4) inset;
 }
 .hero h1 {
-  font-family: var(--font-display); font-size: clamp(2.8rem, 7vw, 5rem);
-  line-height: 1.02; letter-spacing: .04em; margin-bottom: 20px;
+  font-family: var(--font-display); font-size: clamp(2.8rem, 8vw, 6.5rem);
+  line-height: 1.02; letter-spacing: .06em; margin-bottom: 22px;
+  position: relative;
+  text-shadow: 0 2px 16px rgba(0,0,0,.45);
 }
-.hero p { font-size: 1.05rem; opacity: .9; margin-bottom: 36px; max-width: 500px; line-height: 1.7; }
+/* Käsinpiirretty alleviivaus h1:n alle */
+.hero h1::after {
+  content: ''; display: block;
+  width: clamp(140px, 28vw, 220px); height: 14px; margin-top: 10px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 14' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'><path d='M3 8 Q40 -2 80 7 T160 7 T217 6'/></svg>") left center / contain no-repeat;
+  opacity: .9;
+}
+.hero p { font-size: 1.05rem; opacity: .95; margin-bottom: 36px; max-width: 520px; line-height: 1.7; text-shadow: 0 1px 8px rgba(0,0,0,.4); }
 .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+
 
 /* =====================================================
    PAGE HERO (alasivut)
@@ -188,9 +230,41 @@ body.nav-open .nav-mobile { display: block; }
 .section-green { background: var(--green); color: var(--white); }
 
 .section-header { margin-bottom: 40px; }
-.section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.5rem); letter-spacing: .06em; color: var(--green-dark); margin-bottom: 10px; }
+.section-kicker {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: .9rem; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 8px;
+  background: var(--cream);
+  padding: 6px 16px;
+  border-radius: 20px;
+  transform: rotate(-1.5deg);
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+.section-title {
+  font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: .06em; color: var(--green-dark); margin-bottom: 14px;
+  position: relative; display: inline-block; padding-bottom: 12px;
+}
+/* Käsinpiirretty alleviivaus section-titlejen alle */
+.section-title::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 10px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' fill='none' stroke='%23006633' stroke-width='3' stroke-linecap='round'><path d='M3 6 Q40 0 80 6 T160 5 T197 5'/></svg>") left center / contain no-repeat;
+  opacity: .85;
+}
 .section-title-white { color: var(--white); }
+.section-title-white::after {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'><path d='M3 6 Q40 0 80 6 T160 5 T197 5'/></svg>");
+}
 .section-subtitle { color: var(--gray); font-size: .95rem; max-width: 520px; }
+.section-subtitle a {
+  color: var(--green); font-weight: 700;
+  text-decoration: underline; text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+.section-subtitle a:hover { color: var(--green-dark); }
 .section-subtitle-white { color: rgba(255,255,255,.8); }
 
 /* =====================================================
@@ -204,7 +278,11 @@ body.nav-open .nav-mobile { display: block; }
   background: var(--white); border-radius: var(--radius-lg); padding: 26px 22px;
   box-shadow: var(--shadow); border: 1px solid var(--gray-light); transition: all var(--transition);
 }
-.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--green-light); }
+.card:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--shadow-lg); border-color: var(--green-light); }
+.card:nth-child(2n):hover { transform: translateY(-4px) rotate(1deg); }
+@media (prefers-reduced-motion: reduce) {
+  .card:hover, .card:nth-child(2n):hover { transform: translateY(-4px); }
+}
 .card-icon { font-size: 1.9rem; margin-bottom: 12px; display: flex; align-items: center; height: 36px; }
 .card-icon img { height: 36px; width: auto; }
 .card h3 { font-family: var(--font-display); font-size: 1.25rem; letter-spacing: .04em; color: var(--green-dark); margin-bottom: 7px; }
@@ -296,6 +374,205 @@ body.nav-open .nav-mobile { display: block; }
 }
 .card--hontsy:hover .card-hontsy-badge-arrow { transform: translate(2px, -2px); }
 .card--hontsy { cursor: pointer; }
+
+/* =====================================================
+   ACTIVITY STACK (Mitä teemme?) — polaroid zigzag
+===================================================== */
+.section--activity { position: relative; overflow: hidden; }
+.section--activity::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(0,102,51,.06) 0%, transparent 35%),
+    radial-gradient(circle at 85% 75%, rgba(218,165,32,.05) 0%, transparent 35%);
+  pointer-events: none;
+}
+.section--activity > .container { position: relative; z-index: 1; }
+
+.activity-stack {
+  display: flex; flex-direction: column;
+  gap: clamp(80px, 12vw, 140px);
+  max-width: 1100px; margin: 0 auto;
+  padding: 20px 0;
+}
+
+.activity-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+  isolation: isolate;
+  text-decoration: none;
+  color: inherit;
+}
+.activity-card:nth-child(even) { grid-template-columns: 1fr 1.05fr; }
+.activity-card:nth-child(even) .activity-card-media-wrap { order: 2; }
+.activity-card:nth-child(even) .activity-card-body { order: 1; text-align: right; }
+.activity-card:nth-child(even) .activity-card-cta { flex-direction: row-reverse; }
+
+/* Massive outlined number behind card */
+.activity-card-num {
+  position: absolute; z-index: -1;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 22vw, 16rem);
+  letter-spacing: 0; line-height: .82;
+  color: transparent;
+  -webkit-text-stroke: 2.5px rgba(0,102,51,.16);
+  top: 0; left: 0;
+  transform: translate(-12%, -32%);
+  pointer-events: none; user-select: none;
+}
+.activity-card:nth-child(even) .activity-card-num {
+  left: auto; right: 0;
+  transform: translate(12%, -32%);
+}
+
+/* Polaroid wrap — white frame, rotation, hover settles */
+.activity-card-media-wrap {
+  position: relative;
+  padding: 14px 14px 56px;
+  background: var(--white);
+  border-radius: 4px;
+  box-shadow: 0 24px 50px rgba(0,0,0,.22), 0 4px 12px rgba(0,0,0,.08);
+  transform: rotate(-2.5deg);
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
+}
+.activity-card:nth-child(even) .activity-card-media-wrap { transform: rotate(2.5deg); }
+.activity-card:nth-child(3n) .activity-card-media-wrap { transform: rotate(-1.5deg); }
+.activity-card:hover .activity-card-media-wrap { transform: rotate(0deg) translateY(-8px); }
+
+.activity-card-media {
+  display: block;
+  aspect-ratio: 4 / 3;
+  background: var(--green) center/cover no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+.activity-card-media-emoji {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(5rem, 16vw, 9rem);
+  color: var(--white);
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.45));
+}
+.activity-card-media--padel { background: linear-gradient(135deg, var(--color-padel) 0%, #5e2d8e 100%); }
+.activity-card-media--hontsy { background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 100%); }
+.activity-card-media--idea { background: linear-gradient(135deg, var(--accent-warm) 0%, #c87f1e 100%); }
+.activity-card-media--peikot-tulee {
+  background-color: var(--cream);
+  background-image: url('../img/peikot-tulee.jpg');
+  background-image: -webkit-image-set(url('../img/peikot-tulee.webp') type('image/webp'), url('../img/peikot-tulee.jpg') type('image/jpeg'));
+  background-image: image-set(url('../img/peikot-tulee.webp') type('image/webp'), url('../img/peikot-tulee.jpg') type('image/jpeg'));
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.activity-card-video {
+  width: 100%; height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  display: block;
+  background: #087535;
+}
+.activity-card-media--hontsy-img {
+  background-color: var(--cream);
+  background-image: url('../img/peikkojen-hontsysaannot.webp');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.activity-card-media--padel-img {
+  background-color: var(--white);
+  background-image: url('../img/padel-tilastot.jpg');
+  background-image: -webkit-image-set(url('../img/padel-tilastot.webp') type('image/webp'), url('../img/padel-tilastot.jpg') type('image/jpeg'));
+  background-image: image-set(url('../img/padel-tilastot.webp') type('image/webp'), url('../img/padel-tilastot.jpg') type('image/jpeg'));
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+
+/* Caption inside polaroid bottom strip — handwritten feel */
+.activity-card-caption {
+  position: absolute;
+  bottom: 14px; left: 0; right: 0;
+  text-align: center;
+  font-family: 'Bradley Hand', 'Marker Felt', 'Caveat', 'Comic Sans MS', cursive;
+  font-size: 1.1rem;
+  color: var(--green-dark);
+  letter-spacing: .02em;
+  pointer-events: none;
+}
+
+/* Body */
+.activity-card-body { padding: 0 8px; }
+.activity-card h3 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  letter-spacing: .03em; color: var(--green-dark);
+  line-height: .92; margin-bottom: 18px;
+}
+.activity-card p {
+  font-size: 1.05rem; color: var(--text);
+  line-height: 1.6; margin-bottom: 14px;
+  max-width: 38ch;
+}
+.activity-card p a {
+  color: var(--green); font-weight: 700;
+  text-decoration: underline; text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+.activity-card p a:hover { color: var(--green-dark); }
+.activity-card:nth-child(even) p { margin-left: auto; }
+
+.activity-card-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: 1.05rem; letter-spacing: .06em;
+  color: var(--green);
+  border-bottom: 2px solid var(--green);
+  padding-bottom: 3px;
+  transition: color var(--transition), border-color var(--transition);
+}
+.activity-card-cta svg { transition: transform var(--transition); }
+.activity-card:hover .activity-card-cta { color: var(--green-dark); border-color: var(--green-dark); }
+.activity-card:hover .activity-card-cta svg { transform: translate(3px, -3px); }
+
+/* Klikattava kortti */
+a.activity-card, [role="button"].activity-card { cursor: pointer; }
+
+/* Mobiili — kortit pinoon, keventynyt rotaatio */
+@media (max-width: 768px) {
+  .activity-stack { gap: 80px; }
+  .activity-card,
+  .activity-card:nth-child(even) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .activity-card:nth-child(even) .activity-card-media-wrap { order: 0; }
+  .activity-card:nth-child(even) .activity-card-body { order: 0; text-align: left; }
+  .activity-card:nth-child(even) .activity-card-cta { flex-direction: row; }
+  .activity-card:nth-child(even) p { margin-left: 0; }
+  .activity-card-media-wrap,
+  .activity-card:nth-child(even) .activity-card-media-wrap,
+  .activity-card:nth-child(3n) .activity-card-media-wrap {
+    transform: rotate(-1.5deg);
+  }
+  .activity-card-num,
+  .activity-card:nth-child(even) .activity-card-num {
+    left: -8px; right: auto;
+    top: -20px; transform: none;
+    font-size: clamp(6rem, 24vw, 10rem);
+  }
+  .activity-card-body { padding: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .activity-card-media-wrap,
+  .activity-card:nth-child(even) .activity-card-media-wrap,
+  .activity-card:nth-child(3n) .activity-card-media-wrap { transform: none; }
+  .activity-card:hover .activity-card-media-wrap { transform: translateY(-4px); }
+}
 
 /* Lightbox */
 .lightbox {
@@ -563,6 +840,40 @@ body.nav-open .nav-mobile { display: block; }
   line-height: 1.05;
   letter-spacing: .04em;
   margin-bottom: 16px;
+  transition: transform var(--transition);
+}
+.lippis-promo-text:hover h2 {
+  animation: wiggle .5s ease-in-out;
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0); }
+  25%      { transform: rotate(-2deg); }
+  75%      { transform: rotate(2deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lippis-promo-text:hover h2 { animation: none; }
+}
+
+/* "Rajoitettu erä" -leima */
+.lippis-stamp {
+  position: absolute;
+  top: 18px; right: 20px;
+  background: var(--accent-warm);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: .85rem;
+  letter-spacing: .12em;
+  padding: 8px 14px;
+  border-radius: 4px;
+  transform: rotate(-8deg);
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+  z-index: 2;
+  border: 2px solid var(--ink);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .lippis-stamp { top: 12px; right: 12px; font-size: .7rem; padding: 6px 10px; }
 }
 .lippis-promo-text p {
   font-size: 1rem;
@@ -821,67 +1132,82 @@ body.nav-open .nav-mobile { display: block; }
 .calendar-subscribe { display: flex; gap: 12px; flex-wrap: wrap; }
 .calendar-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
 
-/* Agenda — piilossa oletuksena, näkyvillä toggle- tai mobiilitilassa */
-.cal-agenda { display: none; }
-.cal-view-agenda .cal-weekdays,
-.cal-view-agenda .cal-days { display: none; }
-.cal-view-agenda .cal-agenda { display: block; }
-
-.cal-agenda-empty {
-  text-align: center; padding: 40px 16px;
-  color: var(--gray); font-size: .95rem;
-}
-
-.cal-agenda-day { margin-bottom: 6px; }
-
-.cal-agenda-date {
-  font-size: .78rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: .06em; color: var(--gray); padding: 10px 0 4px;
-  border-bottom: 1px solid var(--gray-light);
-}
-
-.cal-agenda-today .cal-agenda-date {
-  color: var(--green); border-color: var(--green);
-}
-
-.cal-agenda-event {
-  display: flex; align-items: flex-start; gap: 12px;
-  width: 100%; background: var(--white); border: 1px solid var(--gray-light);
-  border-left: 4px solid var(--green); border-radius: 6px;
-  padding: 10px 12px; margin-top: 6px; cursor: pointer;
-  text-align: left; font-family: inherit; font-size: inherit;
-  transition: box-shadow var(--transition);
-}
-.cal-agenda-event:active { box-shadow: var(--shadow); }
-
-.cal-agenda-event-sahly  { border-left-color: var(--color-sahly); }
-.cal-agenda-event-futsal { border-left-color: var(--color-futsal); }
-.cal-agenda-event-harrastefutsal { border-left-color: var(--color-harrastefutsal); }
-.cal-agenda-event-padel  { border-left-color: var(--color-padel); }
-.cal-agenda-event-futis  { border-left-color: var(--color-futis); }
-
-.cal-agenda-time {
-  flex-shrink: 0; font-size: .82rem; font-weight: 700;
-  color: var(--text); min-width: 44px;
-}
-
-.cal-agenda-info { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-
-.cal-agenda-title {
-  font-size: .88rem; font-weight: 600; color: var(--text);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-
-.cal-agenda-location {
-  font-size: .78rem; color: var(--gray);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.cal-agenda-location::before { content: '📍 '; }
-
+/* Mobiili: pidetään grid-näkymä, kompaktimpi */
 @media (max-width: 600px) {
-  .cal-weekdays, .cal-days { display: none; }
-  .cal-agenda { display: block; }
-  .cal-view-toggle { display: none; }
+  .cal-weekdays { font-size: .68rem; gap: 2px; }
+  .cal-days { gap: 2px; }
+  .cal-day { min-height: 56px; padding: 3px; border-radius: 4px; }
+  .cal-day-num { font-size: .68rem; margin-bottom: 2px; }
+  .cal-event {
+    font-size: 0; padding: 0;
+    height: 6px; border-radius: 2px; margin-bottom: 2px;
+  }
+  .cal-event-time { display: none; }
+  .cal-month-title { font-size: 1rem; }
+}
+@media (max-width: 380px) {
+  .cal-day { min-height: 48px; padding: 2px; }
+}
+
+/* =====================================================
+   ILMOITTAUTUMINEN (osana liity-lomaketta)
+===================================================== */
+.ilmo-kategoriat { display: grid; gap: 16px; grid-template-columns: 1fr; margin: 16px 0 8px; }
+@media (min-width: 768px) { .ilmo-kategoriat { grid-template-columns: repeat(2, 1fr); } }
+
+.ilmo-card {
+  position: relative;
+  border: 2px solid var(--gray-light);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  cursor: pointer;
+  transition: all var(--transition);
+  background: var(--white);
+}
+.ilmo-card:hover { border-color: var(--green); box-shadow: var(--shadow); }
+.ilmo-card.selected { border-color: var(--green); background: var(--green-pale); }
+.ilmo-card.taynna { cursor: default; border-color: var(--gray-light); background: #fafafa; }
+.ilmo-card.taynna:hover { box-shadow: none; border-color: var(--gray-light); }
+.ilmo-card.taynna .ilmo-card-nimi { color: var(--gray); }
+.ilmo-card.taynna .ilmo-card-check { display: none; }
+
+.ilmo-badge-taynna {
+  display: inline-block; background: #c5221f; color: var(--white);
+  font-size: .75rem; font-weight: 700; padding: 2px 10px;
+  border-radius: 12px; letter-spacing: .03em;
+}
+
+.ilmo-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; padding-right: 32px; }
+.ilmo-card-nimi { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: .04em; color: var(--green-dark); }
+.ilmo-card-hinta { font-size: .9rem; font-weight: 700; color: var(--text); }
+.ilmo-card-info { font-size: .82rem; color: var(--gray); margin-bottom: 10px; line-height: 1.4; }
+
+.ilmo-card-check {
+  position: absolute; top: 14px; right: 14px;
+  width: 24px; height: 24px; border: 2px solid var(--gray-light);
+  border-radius: 50%; transition: all var(--transition);
+  display: flex; align-items: center; justify-content: center;
+}
+.ilmo-card.selected .ilmo-card-check {
+  background: var(--green); border-color: var(--green);
+}
+.ilmo-card.selected .ilmo-card-check::after {
+  content: '\2713'; color: var(--white); font-size: 14px; font-weight: 700;
+}
+
+.ilmo-palkki { height: 8px; border-radius: 4px; background: #a8dbb0; overflow: hidden; margin-top: 8px; }
+.ilmo-palkki-taytto { height: 100%; border-radius: 4px; background: #c5221f; transition: width .4s ease; }
+
+.ilmo-paikat { font-size: .82rem; color: var(--gray); margin-top: 6px; }
+.ilmo-paikat-taynna { color: #c5221f; font-weight: 700; }
+
+.ilmo-lataus { text-align: center; padding: 24px 0; color: var(--gray); }
+
+.ilmo-sitova-info {
+  background: #fff4e5; border-left: 4px solid #d97706;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 12px 18px; font-size: .88rem; color: #7c2d12;
+  margin: 8px 0 16px;
 }
 
 /* =====================================================

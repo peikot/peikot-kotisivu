@@ -17,6 +17,7 @@
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" href="fonts/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="img/banner.webp" type="image/webp" fetchpriority="high">
   <link rel="canonical" href="https://vuoreksenpeikot.fi/">
   <link rel="stylesheet" href="css/style.css?v=1">
   <script type="application/ld+json">
@@ -43,24 +44,134 @@
 </head>
 <body>
 
-  <div id="nav-placeholder"><noscript><nav class="nav" role="navigation" aria-label="Päänavigaatio"><div class="container nav-inner"><a href="index.html" class="nav-logo" aria-label="Vuoreksen Peikot etusivu"><img src="img/logo-white.webp" alt="Vuoreksen Peikot logo"></a><ul class="nav-links" style="display:flex"><li><a href="index.html">Etusivu</a></li><li><a href="kalenteri.html">Kalenteri</a></li><li><a href="liity.html">Liity</a></li><li><a href="yhteistyo.html">Yhteistyö</a></li><li><a href="ota-yhteytta.html">Ota yhteyttä</a></li></ul></div></nav></noscript></div>
+  <div id="nav-placeholder"><noscript><nav class="nav" role="navigation" aria-label="Päänavigaatio"><div class="container nav-inner"><a href="index.html" class="nav-logo" aria-label="Vuoreksen Peikot etusivu"><img src="img/logo-white.webp" alt="Vuoreksen Peikot logo"></a><ul class="nav-links" style="display:flex"><li><a href="index.html">Etusivu</a></li><li><a href="liity.html">Tule mukaan</a></li><li><a href="yhteistyo.html">Yhteistyö</a></li><li><a href="ota-yhteytta.html">Ota yhteyttä</a></li></ul></div></nav></noscript></div>
 
   <!-- HERO -->
   <section class="hero" id="main-content">
     <div class="hero-bg" aria-hidden="true"></div>
-    <div class="container hero-content">
-      <span class="hero-badge fade-up">Vuores · Tampere · Lempäälä</span>
-      <h1 class="fade-up delay-1">Tervetuloa<br>Vuoreksen<br>Peikkojen<br>sivuille!</h1>
-      <p class="fade-up delay-2">Olemme <span class="jasenmaara-luku jasenmaara-luku--hero" data-maara="77">0</span> jäsenen vuoreslainen urheiluseura, jonka ytimessä rento ja paikallinen höntsymeininki. Peikoissa liikutaan monilajisesti ja uusia lajeja otetaan vähintäänkin kokeiluun.</p>
-      <div class="hero-buttons fade-up delay-3">
-        <a href="liity.html" class="btn btn-outline">Liity jäseneksi</a>
-        <a href="ota-yhteytta.html" class="btn btn-outline">Ota yhteyttä</a>
+    <picture>
+      <source srcset="img/Peikot_logo.webp" type="image/webp">
+      <img src="img/Peikot_logo.png" alt="Vuoreksen Peikot ry" class="hero-logo" width="1400" height="1400" fetchpriority="high">
+    </picture>
+  </section>
+
+  <!-- ESITTELY -->
+  <section class="section section--activity">
+    <div class="container">
+      <div class="section-header" style="text-align:center; margin-bottom: 64px;">
+        <span class="section-kicker">Vuoreksen Peikot ry</span>
+        <h2 class="section-title" style="display:inline-block;">Höntsyseura Vuoreksesta</h2>
+        <p class="section-subtitle" style="margin: 18px auto 0; text-align:center;">Olemme paikallinen höntsyseura Tampereen ja Lempäälän Vuoreksessa. Pelaillaan ympäri vuoden höntsyhengellä, saunotaan ja kokeillaan uusia lajeja. Peikot on ennen kaikkea yhteisö.</p>
+      </div>
+
+      <div class="activity-stack">
+        <div class="activity-card">
+          <span class="activity-card-num" aria-hidden="true">01</span>
+          <div class="activity-card-media-wrap">
+            <div class="activity-card-media" style="background-image: url('img/futis.webp')"></div>
+            <span class="activity-card-caption">Tervaslammen puisto · 16.5.2025</span>
+          </div>
+          <div class="activity-card-body">
+            <h3>Höntsyfutis</h3>
+            <p>Futista Vuoreksen Tervaslammenpuistossa. Kaikille avointa. Toimintaa järjestetään Facebookissa <a href="https://www.facebook.com/groups/vuoreksenhontsyt" target="_blank" rel="noopener">Vuoreksen höntsyissä</a>.</p>
+          </div>
+        </div>
+        <div class="activity-card">
+          <span class="activity-card-num" aria-hidden="true">02</span>
+          <div class="activity-card-media-wrap">
+            <div class="activity-card-media" style="background-image: url('img/sahly.webp')"></div>
+            <span class="activity-card-caption">Peltolammin koulu · 27.11.2025</span>
+          </div>
+          <div class="activity-card-body">
+            <h3>Höntsysähly</h3>
+            <p>Syksystä kevääseen sählyä Vuoreksen lähellä. Erillinen osallistumismaksu. Moket ilmaseks!</p>
+          </div>
+        </div>
+        <div class="activity-card">
+          <span class="activity-card-num" aria-hidden="true">03</span>
+          <div class="activity-card-media-wrap">
+            <div class="activity-card-media" style="background-image: url('img/futsal.webp')"></div>
+            <span class="activity-card-caption">Vuoreksen koulu · 28.11.2025</span>
+          </div>
+          <div class="activity-card-body">
+            <h3>Höntsyfutsal</h3>
+            <p>Futsalia lokakuusta maaliskuun loppuun. Vuoreksen lähellä. Erillinen osallistumismaksu.</p>
+          </div>
+        </div>
+
+        <a href="https://padel.vuoreksenpeikot.fi/" target="_blank" rel="noopener" class="activity-card">
+          <span class="activity-card-num" aria-hidden="true">04</span>
+          <div class="activity-card-media-wrap">
+            <div class="activity-card-media activity-card-media--padel-img"></div>
+            <span class="activity-card-caption">Peikot Padel Tour 2026</span>
+          </div>
+          <div class="activity-card-body">
+            <h3>Peikot Padel</h3>
+            <p>Yhteisiä pelejä WhatsApp-ryhmän kautta ja legendaarisia Peikot Padel Tour -turnauksia.</p>
+            <span class="activity-card-cta">
+              Padel Touriin
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://tulospalvelu.palloliitto.fi/team/35216425/info" target="_blank" rel="noopener" class="activity-card">
+          <span class="activity-card-num" aria-hidden="true">05</span>
+          <div class="activity-card-media-wrap">
+            <div class="activity-card-media" style="background-image: url('img/peikot-kilpa.webp')"></div>
+            <span class="activity-card-caption">Pub Sääksville Turnaus · 27.9.2025</span>
+          </div>
+          <div class="activity-card-body">
+            <h3>Harraste- ja kilpatoiminta</h3>
+            <p>Peikoista osallistutaan myös kilpatoimintaan, kuten Puistofutikseen ja Spiral-liigaan.</p>
+            <span class="activity-card-cta">
+              Puistofutis 2026
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <div class="activity-card" id="hontsy-btn" role="button" tabindex="0">
+          <span class="activity-card-num" aria-hidden="true">06</span>
+          <div class="activity-card-media-wrap">
+            <div class="activity-card-media activity-card-media--hontsy-img"></div>
+            <span class="activity-card-caption">Höntsysäännöt</span>
+          </div>
+          <div class="activity-card-body">
+            <h3>Paikallinen höntsymeininki</h3>
+            <p>Urheilu yhdistää peikkoja. Ja mikäs sen parempaa kuin urheilla hyvässä hengessä.</p>
+            <span class="activity-card-cta">
+              Höntsysäännöt
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <a href="liity.html" class="activity-card">
+          <span class="activity-card-num" aria-hidden="true">07</span>
+          <div class="activity-card-media-wrap">
+            <video class="activity-card-media activity-card-video" autoplay muted loop playsinline preload="metadata" poster="img/peikottulee-poster.jpg" aria-hidden="true">
+              <source src="img/peikottulee.webm" type="video/webm">
+              <source src="img/peikottulee.mp4" type="video/mp4">
+            </video>
+            <span class="activity-card-caption">Peikot tulee, tuu säkin?</span>
+          </div>
+          <div class="activity-card-body">
+            <h3>Tuu mukaan Peikkoihin!</h3>
+            <p>Peikkojen toiminta kasvaa ja kehittyy sen jäsenten myötä. Meille saa tulla osallistumaan, mutta myös järjestämään toimintaa!</p>
+            <span class="activity-card-cta">
+              Tule mukaan
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- LIPPIS-PROMO -->
   <section class="lippis-promo">
+    <span class="lippis-stamp" aria-hidden="true">Rajoitettu erä</span>
     <div class="container lippis-promo-inner">
       <a href="https://forms.gle/rywAhLNDSRMH4BDd9" target="_blank" rel="noopener" class="lippis-promo-media" aria-label="Varaa Peikkojen lippis tilauslomakkeella">
         <img src="img/lippis.webp" alt="Peikot Vuores -lippis kädessä" class="lippis-slide is-active" width="1600" height="1067">
@@ -77,131 +188,56 @@
     </div>
   </section>
 
-  <!-- ESITTELY -->
-  <section class="section">
+  <!-- KALENTERI -->
+  <section class="section section-alt">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Mitä teemme?</h2>
-        <p class="section-subtitle">Peikkojen toiminta on ympärivuotista, ei nukuta talviunta! Talvikaudella on yleensä pelattu sählyä, futsalia ja padelia, kesällä taas futista.</p>
+      <div class="section-header" style="text-align:center; margin-bottom: 40px;">
+        <h2 class="section-title" style="display:inline-block;">Peikkojen kalenteri</h2>
+        <p class="section-subtitle" style="margin: 14px auto 0; text-align:center;">Tulevat pelit, turnaukset ja tapahtumat.</p>
       </div>
 
-      <!-- Lajit -->
-      <div class="cards-grid">
-        <div class="card card--img fade-up">
-          <span class="card-icon">⚽</span>
-          <h3>Höntsyfutis</h3>
-          <p>Futista Vuoreksen Tervaslammenpuistossa! Kaikille avointa höntsyfutista.</p>
+      <div class="calendar-subscribe" style="margin-bottom:24px">
+        <a href="webcal://calendar.google.com/calendar/ical/info%40vuoreksenpeikot.fi/public/basic.ics" class="btn btn-primary">Tilaa kalenteri</a>
+        <a href="https://calendar.google.com/calendar/embed?src=info%40vuoreksenpeikot.fi&ctz=Europe%2FHelsinki" target="_blank" rel="noopener" class="btn btn-outline-green">Avaa Google kalenterissa</a>
+      </div>
+
+      <div id="event-list">
+        <div class="cal-header">
+          <button class="cal-nav-btn" id="cal-prev">&#8249;</button>
+          <span class="cal-month-title" id="cal-month-title"></span>
+          <button class="cal-nav-btn" id="cal-next">&#8250;</button>
         </div>
-        <div class="card card--img card--futsal fade-up delay-1">
-          <span class="card-icon"><img src="img/futsal-icon.webp" alt="Futsal"></span>
-          <h3>Höntsyfutsal</h3>
-          <p>Futsalia kun ei päästä futista! Vain jäsenille erillisellä osallistumismaksulla.</p>
+        <div class="cal-weekdays">
+          <div>Ma</div><div>Ti</div><div>Ke</div><div>To</div><div>Pe</div><div>La</div><div>Su</div>
         </div>
-        <div class="card card--img card--sahly fade-up delay-2">
-          <span class="card-icon"><img src="img/sahly-icon.webp" alt="Sähly"></span>
-          <h3>Höntsysähly</h3>
-          <p>Talvikauden sählyä, Vuoreksen tai Peltolammin koulussa. Moket ilmaseks!</p>
-        </div>
-        <a href="https://padel.vuoreksenpeikot.fi/" target="_blank" rel="noopener" class="card card--padel fade-up delay-1">
-          <span class="card-padel-badge">
-            <span class="card-padel-badge-text">Klikkaa tästä Peikot Padel Touriin!</span>
-            <svg class="card-padel-badge-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </span>
-          <span class="card-icon">🎾</span>
-          <h3>Padel</h3>
-          <p>Yhteisiä pelejä WA-ryhmän kautta ja legendaarisia Peikot Padel Tour turnauksia!</p>
-        </a>
-        <div class="card card--img card--kilpa fade-up delay-2">
-          <span class="card-icon">🏆</span>
-          <h3>Harraste- ja kilpatoiminta</h3>
-          <p>Peikoista osallistutaan myös kilpatoimintaan, kuten Puistofutikseen ja Spiral-liigaan.</p>
-        </div>
-        <div class="card card--hontsy fade-up delay-3" id="hontsy-btn" role="button" tabindex="0">
-          <span class="card-hontsy-badge">
-            <span class="card-hontsy-badge-text">Tutustu Peikkojen höntsysääntöihin!</span>
-            <svg class="card-hontsy-badge-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </span>
-          <span class="card-icon">🤝</span>
-          <h3>Paikallinen höntsymeininki</h3>
-          <p>Urheilu yhdistää Peikkoja! Ja mikäs parempaa kuin urheilla hyvässä hengessä.</p>
+        <div class="cal-days" id="cal-days">
+          <div class="event-list-empty" style="grid-column:1/-1">Ladataan tapahtumia...</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SEURAAVA PELI + HÖNTSYMITTARI -->
-  <section class="section section-alt" id="seuraava-peli">
-    <div class="container">
-      <div class="next-game" id="next-game">
-        <div class="next-game-icon" id="next-game-icon"></div>
-        <div class="next-game-info">
-          <span class="next-game-label">Seuraavat höntsyt</span>
-          <h3 id="next-game-title">Ladataan...</h3>
-          <p class="next-game-details" id="next-game-details"></p>
-        </div>
-        <div class="next-game-countdown" id="next-game-countdown">
-          <div class="countdown-unit">
-            <span class="countdown-number" id="cd-days">-</span>
-            <span class="countdown-label">pv</span>
-          </div>
-          <div class="countdown-unit">
-            <span class="countdown-number" id="cd-hours">-</span>
-            <span class="countdown-label">t</span>
-          </div>
-          <div class="countdown-unit">
-            <span class="countdown-number" id="cd-mins">-</span>
-            <span class="countdown-label">min</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hontsymittari" id="hontsymittari">
-        <h3 class="hontsymittari-title" id="hontsymittari-title">Höntsymittari</h3>
-        <div class="mittari-stats">
-          <div class="mittari-stat">
-            <span class="mittari-number" id="mittari-pelit" data-maara="77">0</span>
-            <span class="mittari-label">peliä pelattu</span>
-          </div>
-          <div class="mittari-stat">
-            <span class="mittari-number" id="mittari-tunnit" data-maara="77">0</span>
-            <span class="mittari-label">tuntia liikuttu</span>
-          </div>
-        </div>
-        <div class="mittari-bar">
-          <div class="mittari-bar-fill" id="mittari-fill"></div>
-        </div>
-        <p class="mittari-target" id="mittari-target"></p>
-      </div>
+  <!-- TAPAHTUMA-MODAALI -->
+  <div id="cal-modal" class="cal-modal-overlay" role="dialog" aria-modal="true">
+    <div class="cal-modal-box">
+      <button class="cal-modal-close" id="cal-modal-close" aria-label="Sulje">&times;</button>
+      <h3 id="cal-modal-title"></h3>
+      <p id="cal-modal-date" class="cal-modal-meta"></p>
+      <p id="cal-modal-time" class="cal-modal-meta"></p>
+      <p id="cal-modal-location" class="cal-modal-meta cal-modal-location"></p>
+      <p id="cal-modal-desc" class="cal-modal-desc"></p>
     </div>
-  </section>
-
-  <!-- SOME-OSIO -->
-  <section class="social-section">
-    <div class="container">
-      <h2>Seuraa meitä somessa</h2>
-      <p>Pysy ajan tasalla tapahtumista, peleistä ja ilmoittautumisista.</p>
-      <div class="social-buttons">
-        <a href="https://www.facebook.com/vuoreksenpeikot" target="_blank" rel="noopener" class="social-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          Facebook
-        </a>
-        <a href="https://www.instagram.com/vuoreksenpeikot" target="_blank" rel="noopener" class="social-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          Instagram
-        </a>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <!-- CTA -->
   <section class="section">
     <div class="container">
       <div class="cta-banner">
         <div>
-          <h3>Valmis liittymään?</h3>
-          <p>Jäsenmaksu on vain 10 €/vuosi. Tule mukaan!</p>
+          <h3>Tuu mukaan!</h3>
+          <p>Jäsenmaksu on vain 10 €/vuosi.</p>
         </div>
-        <a href="liity.html" class="btn btn-primary">Liity jäseneksi →</a>
+        <a href="liity.html" class="btn btn-primary">Tule mukaan →</a>
       </div>
     </div>
   </section>

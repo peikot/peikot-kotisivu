@@ -19,7 +19,10 @@
         if (callback) callback();
       })
       .catch(function () {
-        placeholder.style.display = 'none';
+        var noscript = placeholder.querySelector('noscript');
+        if (noscript) {
+          placeholder.innerHTML = noscript.textContent;
+        }
       });
   }
 
@@ -248,7 +251,7 @@
     observeOnce(container, 0.3, animoiMittari);
   }
 
-  // Kalenterisivu: kuukausikalenteri
+  // Kuukausikalenteri etusivulle
   var kalenteriTapahtumat = [];
   var kalenteriKuukausi = new Date();
   kalenteriKuukausi.setDate(1);

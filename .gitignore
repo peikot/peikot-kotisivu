@@ -5,3 +5,4 @@ vasy-apps-script/
 .env
 .env.*
 node_modules/
+CLAUDE.md

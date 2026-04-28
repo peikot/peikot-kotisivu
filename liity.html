@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Liity jäseneksi — Vuoreksen Peikot ry</title>
+  <title>Tule mukaan — Vuoreksen Peikot ry</title>
   <meta name="description" content="Liity Vuoreksen Peikot ry:n jäseneksi.">
-  <meta property="og:title" content="Liity jäseneksi — Vuoreksen Peikot ry">
+  <meta property="og:title" content="Tule mukaan — Vuoreksen Peikot ry">
   <meta property="og:description" content="Liity Vuoreksen Peikot ry:n jäseneksi.">
   <meta property="og:image" content="https://vuoreksenpeikot.fi/img/logo.webp">
   <meta property="og:image:alt" content="Vuoreksen Peikot ry:n logo">
@@ -18,17 +18,18 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" href="fonts/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="canonical" href="https://vuoreksenpeikot.fi/liity.html">
+  <link rel="preconnect" href="https://script.google.com" crossorigin>
   <link rel="stylesheet" href="css/style.css?v=1">
 </head>
 <body>
 
-  <div id="nav-placeholder"><noscript><nav class="nav" role="navigation" aria-label="Päänavigaatio"><div class="container nav-inner"><a href="index.html" class="nav-logo" aria-label="Vuoreksen Peikot etusivu"><img src="img/logo-white.webp" alt="Vuoreksen Peikot logo"></a><ul class="nav-links" style="display:flex"><li><a href="index.html">Etusivu</a></li><li><a href="kalenteri.html">Kalenteri</a></li><li><a href="liity.html">Liity</a></li><li><a href="yhteistyo.html">Yhteistyö</a></li><li><a href="ota-yhteytta.html">Ota yhteyttä</a></li></ul></div></nav></noscript></div>
+  <div id="nav-placeholder"><noscript><nav class="nav" role="navigation" aria-label="Päänavigaatio"><div class="container nav-inner"><a href="index.html" class="nav-logo" aria-label="Vuoreksen Peikot etusivu"><img src="img/logo-white.webp" alt="Vuoreksen Peikot logo"></a><ul class="nav-links" style="display:flex"><li><a href="index.html">Etusivu</a></li><li><a href="liity.html">Tule mukaan</a></li><li><a href="yhteistyo.html">Yhteistyö</a></li><li><a href="ota-yhteytta.html">Ota yhteyttä</a></li></ul></div></nav></noscript></div>
 
   <!-- PAGE HERO -->
   <section class="page-hero" id="main-content">
     <div class="page-hero-bg" aria-hidden="true"></div>
     <div class="container page-hero-content">
-      <h1>Liity jäseneksi</h1>
+      <h1>Tule mukaan</h1>
       <p>Tule mukaan vuoreslaiseen urheiluyhteisöön!</p>
     </div>
   </section>
@@ -44,9 +45,10 @@
       <!-- Jäsenhakemuslomake -->
       <div id="hakemus" class="form-section">
         <h2>Jäsenhakemus</h2>
-        <p>Peikkojen jäseneksi voi hakea kuka tahansa, joka hyväksyy seuran tarkoituksen.</p>
+        <p>Peikkojen jäseneksi voi hakea kuka tahansa, joka hyväksyy seuran tarkoituksen. Jäsenmaksu 10 €/vuosi.</p>
         <div id="lomake-container">
           <form id="liittymislomake">
+            <input type="hidden" name="jasenyystyyppi" value="Varsinainen jäsen (10 €/vuosi)">
             <div class="form-row">
               <div class="form-group">
                 <label for="nimi">Nimi *</label>
@@ -64,17 +66,13 @@
             </div>
 
             <div class="form-group">
-              <label>Jäsentyyppi *</label>
-              <div class="form-choice-group">
-                <label class="form-choice">
-                  <input type="radio" name="jasenyystyyppi" value="Varsinainen jäsen (10 €/vuosi)" required>
-                  Varsinainen jäsen (10 €/vuosi)
-                </label>
-                <label class="form-choice">
-                  <input type="radio" name="jasenyystyyppi" value="Kannatusjäsen (50 €/vuosi)">
-                  Kannatusjäsen (50 €/vuosi)
-                </label>
+              <label>Mihin haluat ilmoittautua?</label>
+              <p style="font-size: .85rem; color: var(--gray); margin-bottom: 4px;">Voit valita yhden tai useamman. Valinta on vapaaehtoinen — voit jättää myös tyhjäksi.</p>
+              <div class="ilmo-sitova-info">
+                <strong>Ilmoittautuminen on sitova.</strong> Osallistumismaksu peritään ilmoittautumisen perusteella.
               </div>
+              <div id="ilmo-kategoriat-lataus" class="ilmo-lataus">Ladataan kategorioita…</div>
+              <div id="ilmo-kategoriat" class="ilmo-kategoriat" style="display:none"></div>
             </div>
 
             <div class="form-group">
@@ -83,7 +81,7 @@
             </div>
 
             <div class="form-submit">
-              <button type="submit" id="laheta-btn" class="btn btn-primary">Lähetä hakemus →</button>
+              <button type="submit" id="laheta-btn" class="btn btn-primary">Liity ja ilmoittaudu →</button>
             </div>
           </form>
         </div>
@@ -125,43 +123,7 @@
         </div>
       </div>
 
-      <div class="section-header">
-        <h2 class="section-title">Jäsenyysvaihtoehdot</h2>
-      </div>
-
-      <div class="membership-grid">
-        <div class="membership-card">
-          <div class="membership-card-header">
-            <h3>Varsinainen jäsen</h3>
-            <div class="membership-card-price">10 € <span>/ vuosi</span></div>
-          </div>
-          <div class="membership-card-body">
-            <ul>
-              <li>Osallistumismahdollisuus jäsentoimintaan *</li>
-              <li>Äänioikeus seuran kokouksissa</li>
-              <li>Jäsenedut yhteistyökumppaneilta</li>
-              <li>Pääsy jäsenten WhatsApp-yhteisöön</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="membership-card featured">
-          <div class="membership-card-header">
-            <h3>Kannatusjäsen</h3>
-            <div class="membership-card-price">50 € <span>/ vuosi</span></div>
-          </div>
-          <div class="membership-card-body">
-            <ul>
-              <li>Osallistumismahdollisuus jäsentoimintaan *</li>
-              <li>Seuran toiminnan taloudellinen tukeminen</li>
-              <li>Näkyvyys seuran kanavilla halutessaan</li>
-              <li>Pääsy jäsenten WhatsApp-yhteisöön</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <p class="membership-footnote">* Salivuokraa edellyttävissä lajeissa peritään jäsenmaksun lisäksi osallistumismaksu kauden ajalta. Esimerkiksi sählyssä ja futsalissa osallistumismaksu on ollut noin 30 € kaudelta (marraskuu–maaliskuu) kaudella 2025–2026. Osallistumismaksulla voidaan myös kattaa vuokrien lisäksi yhteisiä pelivälineitä.</p>
+      <p class="membership-footnote">Jäsenmaksun (10 €/vuosi) lisäksi salivuokraa edellyttävissä lajeissa (sähly, futsal) peritään osallistumismaksu kauden ajalta.</p>
     </div>
   </section>
 
@@ -260,6 +222,117 @@
           async src="js/count.js"></script>
   <script src="js/main.js?v=1"></script>
   <script>
+    var ILMO_API = 'https://script.google.com/macros/s/AKfycbyFtReOP5raDe9vXMRy0sQnbXiGIrlGiRlxDY0Kt_yVgHNRTplqWqo2gYWaGQ9fXRUXiw/exec';
+    var ilmoKategoriat = [];
+    var valitut = {};
+
+    function renderKategoriat(kategoriat, naytaLuvut) {
+      if (naytaLuvut === undefined) naytaLuvut = true;
+      var container = document.getElementById('ilmo-kategoriat');
+      container.innerHTML = '';
+
+      if (kategoriat.length === 0) {
+        document.getElementById('ilmo-kategoriat-lataus').textContent = 'Ei avoimia ilmoittautumisia tällä hetkellä.';
+        return;
+      }
+
+      for (var i = 0; i < kategoriat.length; i++) {
+        var kat = kategoriat[i];
+        var onTaynna = naytaLuvut && kat.maksimi !== null && kat.vapaana <= 0;
+
+        var card = document.createElement('div');
+        card.className = 'ilmo-card' + (onTaynna ? ' taynna' : '');
+        card.setAttribute('data-kat', kat.nimi);
+
+        var hintaTeksti = kat.hinta > 0 ? kat.hinta + ' €' : 'Maksuton';
+
+        var html = '<div class="ilmo-card-check"></div>';
+        html += '<div class="ilmo-card-header">';
+        html += '<span class="ilmo-card-nimi">' + kat.nimi + '</span>';
+        html += onTaynna
+          ? '<span class="ilmo-badge-taynna">Täynnä</span>'
+          : '<span class="ilmo-card-hinta">' + hintaTeksti + '</span>';
+        html += '</div>';
+
+        var infoParts = [];
+        if (kat.aika) infoParts.push(kat.aika);
+        if (kat.paikka) infoParts.push(kat.paikka);
+        if (infoParts.length > 0) {
+          html += '<div class="ilmo-card-info">' + infoParts.join(' &middot; ') + '</div>';
+        }
+
+        if (naytaLuvut) {
+          if (kat.maksimi !== null) {
+            var tayttoProsentti = Math.round((kat.ilmoittautuneita / kat.maksimi) * 100);
+            if (tayttoProsentti > 100) tayttoProsentti = 100;
+            html += '<div class="ilmo-palkki"><div class="ilmo-palkki-taytto" style="width:' + tayttoProsentti + '%"></div></div>';
+            if (onTaynna) {
+              html += '<div class="ilmo-paikat ilmo-paikat-taynna">' + kat.ilmoittautuneita + ' / ' + kat.maksimi + ' — Täynnä</div>';
+            } else {
+              html += '<div class="ilmo-paikat">' + kat.ilmoittautuneita + ' / ' + kat.maksimi + ' ilmoittautunut — ' + kat.vapaana + (kat.vapaana === 1 ? ' paikka' : ' paikkaa') + ' vapaana</div>';
+            }
+          } else {
+            html += '<div class="ilmo-paikat">' + kat.ilmoittautuneita + ' ilmoittautunut</div>';
+          }
+        } else {
+          html += '<div class="ilmo-paikat" style="color: var(--gray)">Ladataan paikkoja…</div>';
+        }
+
+        card.innerHTML = html;
+
+        if (!onTaynna) {
+          card.addEventListener('click', (function(katNimi) {
+            return function() {
+              var el = this;
+              if (valitut[katNimi]) {
+                delete valitut[katNimi];
+                el.classList.remove('selected');
+              } else {
+                valitut[katNimi] = true;
+                el.classList.add('selected');
+              }
+            };
+          })(kat.nimi));
+        }
+
+        container.appendChild(card);
+      }
+
+      container.style.display = 'grid';
+      document.getElementById('ilmo-kategoriat-lataus').style.display = 'none';
+    }
+
+    var configPromise = fetch('config.json').then(function(r) { return r.json(); });
+    var apiPromise = fetch(ILMO_API + '?action=kategoriat')
+      .then(function(r) { return r.json(); })
+      .catch(function() { return null; });
+
+    configPromise.then(function(config) {
+      if (config.ilmoittautumisKategoriat && config.ilmoittautumisKategoriat.length > 0) {
+        ilmoKategoriat = config.ilmoittautumisKategoriat;
+        renderKategoriat(ilmoKategoriat, false);
+      }
+      apiPromise.then(function(data) {
+        if (data && data.kategoriat) {
+          ilmoKategoriat = data.kategoriat;
+          renderKategoriat(ilmoKategoriat);
+        } else if (ilmoKategoriat.length === 0) {
+          document.getElementById('ilmo-kategoriat-lataus').textContent = 'Kategorioiden lataus epäonnistui — voit silti liittyä jäseneksi.';
+        } else {
+          renderKategoriat(ilmoKategoriat);
+        }
+      });
+    }).catch(function() {
+      apiPromise.then(function(data) {
+        if (data && data.kategoriat) {
+          ilmoKategoriat = data.kategoriat;
+          renderKategoriat(ilmoKategoriat);
+        } else {
+          document.getElementById('ilmo-kategoriat-lataus').textContent = 'Kategorioiden lataus epäonnistui — voit silti liittyä jäseneksi.';
+        }
+      });
+    });
+
     document.getElementById('liittymislomake').addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -267,30 +340,50 @@
       btn.disabled = true;
       btn.textContent = 'Lähetetään…';
 
-      var formData = new FormData(this);
+      var formEl = this;
+      var nimi = formEl.querySelector('[name="nimi"]').value;
+      var lisatiedot = formEl.querySelector('[name="lisatiedot"]').value;
+      var kategoriaLista = Object.keys(valitut);
 
       fetch('config.json').then(function (r) { return r.json(); }).then(function (config) {
-      fetch(config.appsScriptUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: new URLSearchParams(formData)
+        var liittyminen = fetch(config.appsScriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: new URLSearchParams(new FormData(formEl))
+        });
+
+        var ilmoittautuminen = kategoriaLista.length > 0
+          ? fetch(ILMO_API, {
+              method: 'POST',
+              mode: 'no-cors',
+              body: new URLSearchParams({
+                nimi: nimi,
+                lisatiedot: lisatiedot,
+                kategoriat: kategoriaLista.join(',')
+              })
+            })
+          : Promise.resolve();
+
+        return Promise.all([liittyminen, ilmoittautuminen]);
       })
         .then(function () {
+          var ilmoTeksti = kategoriaLista.length > 0
+            ? '<br>Olet ilmoittautunut: <strong>' + kategoriaLista.join(', ') + '</strong>. '
+            : '';
           document.getElementById('lomake-container').innerHTML =
             '<div class="info-box info-box--success">' +
             '<strong>Hakemus lähetetty!</strong><br>' +
-            'Kiitos hakemuksestasi. Otamme sinuun yhteyttä pian. ' +
-            'Muista vielä maksaa jäsenmaksu alla olevilla tiedoilla. ' +
+            'Kiitos hakemuksestasi. Otamme sinuun yhteyttä pian.' + ilmoTeksti +
+            '<br>Muista vielä maksaa jäsenmaksu' + (kategoriaLista.length > 0 ? ' ja osallistumismaksut' : '') + ' alla olevilla tiedoilla. ' +
             'Jos et saa vahvistusviestiä kahden päivän sisällä, ota yhteyttä: ' +
             '<a href="mailto:info@vuoreksenpeikot.fi">info@vuoreksenpeikot.fi</a>' +
             '</div>';
         })
         .catch(function () {
           btn.disabled = false;
-          btn.textContent = 'Lähetä hakemus →';
+          btn.textContent = 'Liity ja ilmoittaudu →';
           alert('Lomakkeen lähetyksessä tapahtui virhe. Yritä uudelleen tai ota yhteyttä osoitteeseen info@vuoreksenpeikot.fi');
         });
-      });
     });
   </script>
 </body>

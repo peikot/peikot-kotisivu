@@ -30,7 +30,7 @@
     <div class="page-hero-bg" aria-hidden="true"></div>
     <div class="container page-hero-content">
       <h1>Tule mukaan</h1>
-      <p>Tule mukaan vuoreslaiseen urheiluyhteisöön!</p>
+      <p>Liity vuoreslaiseen höntsäporukkaan!</p>
     </div>
   </section>
 
@@ -38,14 +38,14 @@
   <section class="section section-alt">
     <div class="container">
       <div class="purpose-intro">
-        <blockquote class="purpose-quote">Vuoreksen Peikot ry edistää liikunta- ja urheilutoimintaa Vuoreksen alueella (Tampere ja Lempäälä), kohottaa jäsentensä fyysistä kuntoa ja terveyttä, ylläpitää hyvää urheiluhenkeä sekä herättää pysyvää kiinnostusta kaikenlaiseen urheiluun.</blockquote>
+        <p class="purpose-lead">Peikot on vuoreslaisten ja niiden kavereiden oma höntsyseura. Pelataan sählyä, futsalia, padelia ja futista. Kaikki taitotasot tervetulleita!</p>
         <p style="margin-top: 16px;"><a href="#" onclick="document.getElementById('saannot-modal').classList.add('is-open'); return false;" class="btn btn-outline-green" style="font-size: .9rem; padding: 8px 20px;">Viralliset säännöt →</a></p>
       </div>
 
       <!-- Jäsenhakemuslomake -->
       <div id="hakemus" class="form-section">
         <h2>Jäsenhakemus</h2>
-        <p>Peikkojen jäseneksi voi hakea kuka tahansa, joka hyväksyy seuran tarkoituksen. Jäsenmaksu 10 €/vuosi.</p>
+        <p>Mukaan pääsee kuka tahansa Vuoreksesta tai naapurista. Jäsenmaksu pitää homman pyörimässä.</p>
         <div id="lomake-container">
           <form id="liittymislomake">
             <input type="hidden" name="jasenyystyyppi" value="Varsinainen jäsen (10 €/vuosi)">
@@ -67,9 +67,9 @@
 
             <div class="form-group">
               <label>Mihin haluat ilmoittautua?</label>
-              <p style="font-size: .85rem; color: var(--gray); margin-bottom: 4px;">Voit valita yhden tai useamman. Valinta on vapaaehtoinen — voit jättää myös tyhjäksi.</p>
+              <p style="font-size: .85rem; color: var(--gray); margin-bottom: 4px;">Voit jättää ilmoittautumisen myös tyhjäksi. Peikkojen jäsenenä saat tietää ensimmäisenä uusista vuoroista.</p>
               <div class="ilmo-sitova-info">
-                <strong>Ilmoittautuminen on sitova.</strong> Osallistumismaksu peritään ilmoittautumisen perusteella.
+                <strong>Ilmoittautuminen on sitova.</strong> Varaamme paikan sinulle, ja osallistumismaksu kerätään sen perusteella.
               </div>
               <div id="ilmo-kategoriat-lataus" class="ilmo-lataus">Ladataan kategorioita…</div>
               <div id="ilmo-kategoriat" class="ilmo-kategoriat" style="display:none"></div>
@@ -88,8 +88,19 @@
 
         <!-- Maksutiedot -->
         <div class="payment-box">
-          <h3>Maksutiedot</h3>
-          <p>Maksa jäsenmaksu MobilePay:llä tai tilisiirrolla. Tilisiirrossa käytä maksun viestinä nimeäsi.</p>
+          <h3>Hoida maksu</h3>
+          <p>Voit maksaa joko MobilePaylla tai tilisiirtona.</p>
+
+          <dl class="payment-facts">
+            <div class="payment-fact">
+              <dt>Jäsenmaksu</dt>
+              <dd>10 € / vuosi</dd>
+            </div>
+            <div class="payment-fact">
+              <dt>Osallistumismaksu</dt>
+              <dd>Vain vuokraa vaativissa lajeissa (sähly, futsal)</dd>
+            </div>
+          </dl>
 
           <div class="payment-columns">
             <!-- Tilisiirto -->
@@ -99,13 +110,13 @@
                 <label>Saaja</label>
                 <span>Vuoreksen Peikot ry</span>
               </div>
-              <div class="payment-item">
+              <div class="payment-item payment-item-iban">
                 <label>IBAN</label>
                 <span>FI54 5730 0821 6270 11</span>
               </div>
               <div class="payment-item">
                 <label>Viesti</label>
-                <span>Oma nimesi</span>
+                <span>Oma nimesi + mihin maksu liittyy</span>
               </div>
             </div>
 
@@ -123,7 +134,6 @@
         </div>
       </div>
 
-      <p class="membership-footnote">Jäsenmaksun (10 €/vuosi) lisäksi salivuokraa edellyttävissä lajeissa (sähly, futsal) peritään osallistumismaksu kauden ajalta.</p>
     </div>
   </section>
 

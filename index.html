@@ -17,9 +17,11 @@
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" href="fonts/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="img/banner.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="img/banner-mobile.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" href="img/banner-large.webp"  type="image/webp" media="(min-width: 769px)" fetchpriority="high">
+  <link rel="preload" as="image" href="img/Peikot_logo.webp" type="image/webp" fetchpriority="high">
   <link rel="canonical" href="https://vuoreksenpeikot.fi/">
-  <link rel="stylesheet" href="css/style.css?v=1">
+  <link rel="stylesheet" href="css/style.css?v=2">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -49,10 +51,7 @@
   <!-- HERO -->
   <section class="hero" id="main-content">
     <div class="hero-bg" aria-hidden="true"></div>
-    <picture>
-      <source srcset="img/Peikot_logo.webp" type="image/webp">
-      <img src="img/Peikot_logo.png" alt="Vuoreksen Peikot ry" class="hero-logo" width="1400" height="1400" fetchpriority="high">
-    </picture>
+    <img src="img/Peikot_logo.webp" alt="Vuoreksen Peikot ry" class="hero-logo" width="800" height="800" fetchpriority="high">
   </section>
 
   <!-- ESITTELY -->
@@ -252,6 +251,6 @@
 
   <script data-goatcounter="https://peikot.goatcounter.com/count"
           async src="js/count.js"></script>
-  <script src="js/main.js?v=1"></script>
+  <script src="js/main.js?v=2" defer></script>
 </body>
 </html>

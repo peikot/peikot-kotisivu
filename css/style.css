@@ -154,10 +154,11 @@ body.nav-open .nav-mobile { display: block; }
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background: url('../img/banner.JPG') center/cover no-repeat;
-  background: -webkit-image-set(url('../img/banner.webp') type('image/webp'), url('../img/banner.JPG') type('image/jpeg')) center/cover no-repeat;
-  background: image-set(url('../img/banner.webp') type('image/webp'), url('../img/banner.JPG') type('image/jpeg')) center/cover no-repeat;
+  background: url('../img/banner-mobile.webp') center/cover no-repeat;
   filter: grayscale(.9) contrast(1.05) brightness(.75);
+}
+@media (min-width: 769px) {
+  .hero-bg { background: url('../img/banner-large.webp') center/cover no-repeat; }
 }
 .hero-bg::after {
   content: ''; position: absolute; inset: 0;

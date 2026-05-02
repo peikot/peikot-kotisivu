@@ -1268,54 +1268,75 @@ a.activity-card, [role="button"].activity-card { cursor: pointer; }
 /* =====================================================
    ILMOITTAUTUMINEN (osana liity-lomaketta)
 ===================================================== */
-.ilmo-kategoriat { display: grid; gap: 16px; grid-template-columns: 1fr; margin: 16px 0 8px; }
-@media (min-width: 768px) { .ilmo-kategoriat { grid-template-columns: repeat(2, 1fr); } }
+.ilmo-kategoriat { display: grid; gap: 14px; grid-template-columns: 1fr; margin: 18px 0 8px; }
+@media (min-width: 680px) { .ilmo-kategoriat { grid-template-columns: repeat(2, 1fr); } }
 
 .ilmo-card {
   position: relative;
-  border: 2px solid var(--gray-light);
-  border-radius: var(--radius-lg);
-  padding: 20px;
-  cursor: pointer;
-  transition: all var(--transition);
   background: var(--white);
+  border: 1.5px solid var(--green-pale);
+  border-radius: 14px;
+  padding: 18px 20px 16px;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+  overflow: hidden;
 }
-.ilmo-card:hover { border-color: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,77,38,.15); }
-.ilmo-card.selected { border-color: var(--green-dark); background: var(--green-pale); box-shadow: 4px 4px 0 var(--green-dark); transform: translateY(-2px); }
-.ilmo-card.taynna { cursor: default; border-color: var(--gray-light); background: #fafafa; }
-.ilmo-card.taynna:hover { box-shadow: none; border-color: var(--gray-light); }
+.ilmo-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: var(--green); opacity: 0; transition: opacity var(--transition);
+}
+.ilmo-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,77,38,.12); }
+.ilmo-card:hover::before { opacity: 1; }
+.ilmo-card.selected { border-color: var(--green-dark); background: var(--green-pale); box-shadow: 4px 4px 0 var(--green-dark); transform: translateY(-3px); }
+.ilmo-card.selected::before { opacity: 1; background: var(--green-dark); }
+.ilmo-card.taynna { cursor: not-allowed; border-color: var(--gray-light); background: #fafafa; opacity: .72; }
+.ilmo-card.taynna:hover { transform: none; box-shadow: none; border-color: var(--gray-light); }
+.ilmo-card.taynna::before { display: none; }
 .ilmo-card.taynna .ilmo-card-nimi { color: var(--gray); }
 .ilmo-card.taynna .ilmo-card-check { display: none; }
 
 .ilmo-badge-taynna {
-  display: inline-block; background: #c5221f; color: var(--white);
-  font-size: .75rem; font-weight: 700; padding: 2px 10px;
-  border-radius: 12px; letter-spacing: .03em;
+  display: inline-flex; align-items: center;
+  background: var(--gray); color: var(--white);
+  font-size: .7rem; font-weight: 700; padding: 3px 10px;
+  border-radius: 999px; letter-spacing: .08em; text-transform: uppercase;
 }
 
-.ilmo-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; padding-right: 32px; }
-.ilmo-card-nimi { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: .04em; color: var(--green-dark); }
-.ilmo-card-hinta { font-size: .9rem; font-weight: 700; color: var(--text); }
-.ilmo-card-info { font-size: .82rem; color: var(--gray); margin-bottom: 10px; line-height: 1.4; }
+.ilmo-card-header { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 6px; padding-right: 36px; }
+.ilmo-card-nimi { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: .05em; color: var(--green-dark); text-transform: uppercase; line-height: 1.1; }
+.ilmo-card-hinta {
+  flex: none;
+  background: var(--green-pale); color: var(--green-dark);
+  font-size: .82rem; font-weight: 700;
+  padding: 4px 12px; border-radius: 999px;
+  letter-spacing: .02em; border: 1px solid var(--green);
+}
+.ilmo-card-info { font-size: .85rem; color: var(--text); opacity: .78; margin: 6px 0 10px; line-height: 1.5; }
 
 .ilmo-card-check {
-  position: absolute; top: 14px; right: 14px;
-  width: 24px; height: 24px; border: 2px solid var(--gray-light);
-  border-radius: 50%; transition: all var(--transition);
+  position: absolute; top: 16px; right: 16px;
+  width: 26px; height: 26px;
+  background: var(--white);
+  border: 2px solid var(--gray-light);
+  border-radius: 50%;
+  transition: all var(--transition);
   display: flex; align-items: center; justify-content: center;
 }
+.ilmo-card:hover .ilmo-card-check { border-color: var(--green); }
 .ilmo-card.selected .ilmo-card-check {
   background: var(--green); border-color: var(--green);
+  box-shadow: 0 4px 12px rgba(0,102,51,.3);
 }
 .ilmo-card.selected .ilmo-card-check::after {
-  content: '\2713'; color: var(--white); font-size: 14px; font-weight: 700;
+  content: '\2713'; color: var(--white); font-size: 15px; font-weight: 700; line-height: 1;
 }
 
-.ilmo-palkki { height: 8px; border-radius: 4px; background: #a8dbb0; overflow: hidden; margin-top: 8px; }
-.ilmo-palkki-taytto { height: 100%; border-radius: 4px; background: #c5221f; transition: width .4s ease; }
+.ilmo-palkki { height: 6px; border-radius: 999px; background: var(--green-pale); overflow: hidden; margin-top: 10px; }
+.ilmo-palkki-taytto { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--green) 0%, var(--green-light) 100%); transition: width .5s ease; }
+.ilmo-card.taynna .ilmo-palkki-taytto { background: var(--gray); }
 
-.ilmo-paikat { font-size: .82rem; color: var(--gray); margin-top: 6px; }
-.ilmo-paikat-taynna { color: #c5221f; font-weight: 700; }
+.ilmo-paikat { font-size: .78rem; color: var(--gray); margin-top: 8px; font-weight: 600; }
+.ilmo-paikat-taynna { display: inline-block; background: var(--gray); color: var(--white); padding: 2px 10px; border-radius: 999px; font-size: .72rem; letter-spacing: .04em; }
 
 .ilmo-lataus { text-align: center; padding: 24px 0; color: var(--gray); }
 

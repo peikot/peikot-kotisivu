@@ -319,11 +319,24 @@
           if (kat.maksimi !== null) {
             var tayttoProsentti = Math.round((kat.ilmoittautuneita / kat.maksimi) * 100);
             if (tayttoProsentti > 100) tayttoProsentti = 100;
-            html += '<div class="ilmo-palkki"><div class="ilmo-palkki-taytto" style="width:' + tayttoProsentti + '%"></div></div>';
+            var minMerkki = '';
+            if (kat.minimi && kat.minimi > 0 && kat.minimi <= kat.maksimi) {
+              var minProsentti = Math.round((kat.minimi / kat.maksimi) * 100);
+              minMerkki = '<div class="ilmo-palkki-min" style="left:' + minProsentti + '%" title="Minimi ' + kat.minimi + '"></div>';
+            }
+            html += '<div class="ilmo-palkki">' + minMerkki + '<div class="ilmo-palkki-taytto" style="width:' + tayttoProsentti + '%"></div></div>';
             if (onTaynna) {
               html += '<div class="ilmo-paikat ilmo-paikat-taynna">' + kat.ilmoittautuneita + ' / ' + kat.maksimi + ' — Täynnä</div>';
             } else {
               html += '<div class="ilmo-paikat">' + kat.ilmoittautuneita + ' / ' + kat.maksimi + ' ilmoittautunut — ' + kat.vapaana + (kat.vapaana === 1 ? ' paikka' : ' paikkaa') + ' vapaana</div>';
+            }
+            if (kat.minimi && kat.minimi > 0) {
+              var puuttuu = kat.minimi - kat.ilmoittautuneita;
+              if (puuttuu <= 0) {
+                html += '<div class="ilmo-min-status ilmo-min-status--ok">Min. ' + kat.minimi + ' ✓ peli toteutuu</div>';
+              } else {
+                html += '<div class="ilmo-min-status ilmo-min-status--vajaa">Min. ' + kat.minimi + ' — tarvitaan vielä ' + puuttuu + '</div>';
+              }
             }
           } else {
             html += '<div class="ilmo-paikat">' + kat.ilmoittautuneita + ' ilmoittautunut</div>';

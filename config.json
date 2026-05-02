@@ -16,5 +16,15 @@
     "tunnit": 94,
     "tavoite": 100
   },
-  "ilmoittautumisKategoriat": []
+  "ilmoittautumisKategoriat": [
+    {
+      "nimi": "Salibandy",
+      "hinta": 15,
+      "maksimi": 24,
+      "ilmoittautuneita": 5,
+      "vapaana": 19,
+      "aika": "6.5.–27.5.2026",
+      "paikka": "Lempäälä-areena"
+    }
+  ]
 }

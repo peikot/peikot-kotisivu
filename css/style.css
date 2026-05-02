@@ -1270,6 +1270,7 @@ a.activity-card, [role="button"].activity-card { cursor: pointer; }
 ===================================================== */
 .ilmo-kategoriat { display: grid; gap: 14px; grid-template-columns: 1fr; margin: 18px 0 8px; }
 @media (min-width: 680px) { .ilmo-kategoriat { grid-template-columns: repeat(2, 1fr); } }
+.ilmo-kategoriat:has(> .ilmo-card:only-child) { grid-template-columns: 1fr; }
 
 .ilmo-card {
   position: relative;

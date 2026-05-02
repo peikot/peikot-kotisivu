@@ -374,14 +374,34 @@
       .then(function(r) { return r.json(); })
       .catch(function() { return null; });
 
+    function mergaaConfigKentat(apiKategoriat, configKategoriat) {
+      var SAILYTETTAVAT = ['minimi'];
+      var konfMap = {};
+      for (var i = 0; i < (configKategoriat || []).length; i++) {
+        konfMap[configKategoriat[i].nimi] = configKategoriat[i];
+      }
+      for (var j = 0; j < apiKategoriat.length; j++) {
+        var konf = konfMap[apiKategoriat[j].nimi];
+        if (!konf) continue;
+        for (var k = 0; k < SAILYTETTAVAT.length; k++) {
+          var kentta = SAILYTETTAVAT[k];
+          if ((apiKategoriat[j][kentta] === null || apiKategoriat[j][kentta] === undefined) && konf[kentta] != null) {
+            apiKategoriat[j][kentta] = konf[kentta];
+          }
+        }
+      }
+      return apiKategoriat;
+    }
+
     configPromise.then(function(config) {
-      if (config.ilmoittautumisKategoriat && config.ilmoittautumisKategoriat.length > 0) {
-        ilmoKategoriat = config.ilmoittautumisKategoriat;
+      var configKategoriat = config.ilmoittautumisKategoriat || [];
+      if (configKategoriat.length > 0) {
+        ilmoKategoriat = configKategoriat;
         renderKategoriat(ilmoKategoriat, false);
       }
       apiPromise.then(function(data) {
         if (data && data.kategoriat) {
-          ilmoKategoriat = data.kategoriat;
+          ilmoKategoriat = mergaaConfigKentat(data.kategoriat, configKategoriat);
           renderKategoriat(ilmoKategoriat);
         } else if (ilmoKategoriat.length === 0) {
           document.getElementById('ilmo-kategoriat-lataus').textContent = 'Kategorioiden lataus epäonnistui — voit silti liittyä jäseneksi.';

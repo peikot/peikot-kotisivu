@@ -23,8 +23,21 @@ import json, sys
 with open('$CONFIG', 'r') as f:
     config = json.load(f)
 
+# Säilytä lokaalit kentät jotka API ei vielä palauta (esim. minimi)
+SAILYTETTAVAT = ['minimi']
+vanhat = { k.get('nimi'): k for k in config.get('ilmoittautumisKategoriat', []) }
+
 response = json.loads('''$RESPONSE''')
-config['ilmoittautumisKategoriat'] = response.get('kategoriat', [])
+uudet = response.get('kategoriat', [])
+for kat in uudet:
+    vanha = vanhat.get(kat.get('nimi'))
+    if not vanha:
+        continue
+    for kentta in SAILYTETTAVAT:
+        if kat.get(kentta) in (None, '') and vanha.get(kentta) not in (None, ''):
+            kat[kentta] = vanha[kentta]
+
+config['ilmoittautumisKategoriat'] = uudet
 
 with open('$CONFIG', 'w') as f:
     json.dump(config, f, indent=2, ensure_ascii=False)

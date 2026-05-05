@@ -878,16 +878,16 @@ a.activity-card, [role="button"].activity-card { cursor: pointer; }
 .social-link:hover { background: var(--green-dark); transform: translateY(-2px); }
 
 /* =====================================================
-   LIPPIS-PROMO
+   PROMO-BANNER
 ===================================================== */
-.lippis-promo {
+.promo-banner {
   background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
   color: var(--white);
   padding: 64px 0;
   overflow: hidden;
   position: relative;
 }
-.lippis-promo::before {
+.promo-banner::before {
   content: "";
   position: absolute; inset: 0;
   background:
@@ -895,14 +895,14 @@ a.activity-card, [role="button"].activity-card { cursor: pointer; }
     radial-gradient(circle at 80% 70%, rgba(255,255,255,.06) 0%, transparent 40%);
   pointer-events: none;
 }
-.lippis-promo-inner {
+.promo-banner-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 48px;
   position: relative;
 }
-.lippis-promo-media {
+.promo-banner-media {
   display: block;
   width: 100%;
   border-radius: var(--radius-lg);
@@ -913,11 +913,11 @@ a.activity-card, [role="button"].activity-card { cursor: pointer; }
   position: relative;
   aspect-ratio: 1600 / 1067;
 }
-.lippis-promo-media:hover {
+.promo-banner-media:hover {
   transform: rotate(0deg) translateY(-4px);
   box-shadow: 0 28px 70px rgba(0,0,0,.45);
 }
-.lippis-slide {
+.promo-banner-slide {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -926,11 +926,17 @@ a.activity-card, [role="button"].activity-card { cursor: pointer; }
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
-.lippis-slide.is-active { opacity: 1; }
+.promo-banner-slide.is-active { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
-  .lippis-slide { transition: none; }
+  .promo-banner-slide { transition: none; }
 }
-.lippis-promo-kicker {
+.promo-banner-kickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.promo-banner-kicker {
   display: inline-block;
   font-family: var(--font-display);
   font-size: .9rem;
@@ -938,10 +944,9 @@ a.activity-card, [role="button"].activity-card { cursor: pointer; }
   background: rgba(255,255,255,.18);
   padding: 6px 14px;
   border-radius: 999px;
-  margin-bottom: 18px;
   border: 1px solid rgba(255,255,255,.25);
 }
-.lippis-promo-text h2 {
+.promo-banner-text h2 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.05;
@@ -949,7 +954,7 @@ a.activity-card, [role="button"].activity-card { cursor: pointer; }
   margin-bottom: 16px;
   transition: transform var(--transition);
 }
-.lippis-promo-text:hover h2 {
+.promo-banner-text:hover h2 {
   animation: wiggle .5s ease-in-out;
 }
 @keyframes wiggle {
@@ -958,42 +963,21 @@ a.activity-card, [role="button"].activity-card { cursor: pointer; }
   75%      { transform: rotate(2deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lippis-promo-text:hover h2 { animation: none; }
+  .promo-banner-text:hover h2 { animation: none; }
 }
 
-/* "Rajoitettu erä" -leima */
-.lippis-stamp {
-  position: absolute;
-  top: 18px; right: 20px;
-  background: var(--accent-warm);
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-size: .85rem;
-  letter-spacing: .12em;
-  padding: 8px 14px;
-  border-radius: 4px;
-  transform: rotate(-8deg);
-  box-shadow: 0 4px 14px rgba(0,0,0,.25);
-  z-index: 2;
-  border: 2px solid var(--ink);
-  text-transform: uppercase;
-  pointer-events: none;
-}
-@media (max-width: 600px) {
-  .lippis-stamp { top: 12px; right: 12px; font-size: .7rem; padding: 6px 10px; }
-}
-.lippis-promo-text p {
+.promo-banner-text p {
   font-size: 1rem;
   opacity: .9;
   margin-bottom: 24px;
   max-width: 40ch;
 }
-.lippis-promo-text .btn-primary {
+.promo-banner-text .btn-primary {
   background: var(--white);
   color: var(--green-dark);
   border-color: var(--white);
 }
-.lippis-promo-text .btn-primary:hover {
+.promo-banner-text .btn-primary:hover {
   background: var(--off-white);
   border-color: var(--off-white);
   color: var(--green-dark);
@@ -1001,14 +985,15 @@ a.activity-card, [role="button"].activity-card { cursor: pointer; }
 }
 
 @media (max-width: 768px) {
-  .lippis-promo { padding: 48px 0; }
-  .lippis-promo-inner {
+  .promo-banner { padding: 48px 0; }
+  .promo-banner-inner {
     grid-template-columns: 1fr;
     gap: 28px;
     text-align: center;
   }
-  .lippis-promo-text p { margin-left: auto; margin-right: auto; }
-  .lippis-promo-media { transform: rotate(-1deg); max-width: 420px; margin: 0 auto; }
+  .promo-banner-text p { margin-left: auto; margin-right: auto; }
+  .promo-banner-kickers { justify-content: center; }
+  .promo-banner-media { transform: rotate(-1deg); max-width: 420px; margin: 0 auto; }
 }
 
 /* =====================================================

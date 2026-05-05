@@ -546,17 +546,18 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Lippis-promo: vaihtele kuvia ristikuvana
+  // Promo-banneri: vaihtele kuvia ristikuvana
   // ---------------------------------------------------------------------------
-  var lippisSlides = document.querySelectorAll('.lippis-promo-media .lippis-slide');
-  if (lippisSlides.length > 1) {
+  var promoSlides = document.querySelectorAll('.promo-banner-media .promo-banner-slide');
+  if (promoSlides.length > 1) {
     var idx = 0;
     setInterval(function () {
-      lippisSlides[idx].classList.remove('is-active');
-      idx = (idx + 1) % lippisSlides.length;
-      lippisSlides[idx].classList.add('is-active');
+      promoSlides[idx].classList.remove('is-active');
+      idx = (idx + 1) % promoSlides.length;
+      promoSlides[idx].classList.add('is-active');
     }, 4000);
   }
+
 
   // ---------------------------------------------------------------------------
   // Lightbox & modaalit: sulje ESC-näppäimellä
